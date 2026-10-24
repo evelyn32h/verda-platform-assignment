@@ -14,7 +14,8 @@ metrics-server, Prometheus and Grafana passed live validation. See the complete
 The required outcome is a two-node k3s cluster, Traefik ingress, metrics-server,
 an externally reachable sample application with manifests, a documented TLS
 approach, Prometheus/Grafana with a useful dashboard, and access/operations notes.
-The bonus GitOps, RBAC, and alerting work is deliberately excluded.
+The bonus [basic RBAC](docs/RBAC.md) is deployed and verified for the demo
+namespace. GitOps/Argo CD and alerting remain excluded.
 The [backup/recovery notes](docs/BACKUP_RESTORE.md) bonus is documented against
 the actual SQLite/local-path layout; backup and restore execution remain untested.
 
@@ -145,6 +146,23 @@ The custom six-panel dashboard covers ready nodes, available app replicas,
 running pods, node CPU, memory, and root filesystem usage. The bundled dashboards
 are also provisioned. The chart disables unavailable k3s control-plane scrape
 targets to avoid presenting expected missing endpoints as monitoring failures.
+
+## Basic RBAC
+
+The `demo-reader` ServiceAccount is bound to a namespace-local read-only Role:
+Pods, Services and Deployments allow `get/list/watch`; Pod logs allow `get`.
+It cannot mutate resources, read Secrets, access other namespaces or read cluster
+resources. No long-lived credential or public API exposure was added. The app's
+own ServiceAccount selection is unchanged.
+
+```powershell
+python scripts/rbac.py apply
+python scripts/rbac.py verify
+```
+
+See [policy and usage](docs/RBAC.md), [YAML](manifests/rbac.yaml) and the
+[92-check verification record](docs/evidence/rbac-checks.json). Both the app and
+monitoring passed before/after availability checks without a Pod restart/rollout.
 
 ## TLS approach
 

@@ -10,7 +10,8 @@ results and sanitized evidence; the README contains access instructions.
 
 Deployment scripts, workload manifests, monitoring configuration, a custom
 dashboard and operator documentation are included in this Git repository.
-Bonus GitOps, custom RBAC and alerting were deferred.
+The basic namespace RBAC bonus is deployed and verified. Bonus GitOps/Argo CD and
+alerting remain deferred.
 The backup/recovery **notes** bonus is now complete; its procedures have not been
 executed or validated through a restore drill.
 
@@ -95,6 +96,24 @@ Only metadata/file existence was inspected; services were not stopped, and no
 backup, snapshot, integrity check or recovery was executed. The sanitized
 [inventory](evidence/backup-inventory.json) supports the observed layout. The
 owner also independently confirmed the public app, health endpoint and six panels.
+
+## Basic RBAC bonus
+
+[manifests/rbac.yaml](../manifests/rbac.yaml) creates `demo-reader` as a
+ServiceAccount, Role and RoleBinding only in `demo`. The Role allows
+`get/list/watch` on Pods, Services and Deployments, and `get` on Pod logs.
+It has no write, Secret, cross-namespace or cluster-resource grants. No
+ClusterRole/ClusterRoleBinding, token credential or API exposure was added.
+
+All **92 authorization checks passed** (10 allow, 82 deny), using impersonation
+with the ServiceAccount's normal groups. Real application resource/log reads
+succeeded; monitoring Pod and cluster Node requests returned Forbidden.
+Mutation/Secret denial was tested with `kubectl auth can-i`, without executing
+mutations or reading Secrets. [Evidence](evidence/rbac-checks.json) records all
+decisions, actual reads and before/after service health. The application and
+monitoring retained the same Pod UIDs/restart counts, HTTP/HTTPS stayed healthy,
+Grafana health was ok and all 15 Prometheus targets remained up. No alerting or
+Argo CD work was started. [RBAC usage notes](RBAC.md) explain reproduction and scope.
 
 ## With more time
 

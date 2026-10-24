@@ -58,4 +58,7 @@ Grafana authentication and panel data were verified via API; no screenshot is
 claimed. No VM reboot or backup/restore drill was performed. A later read-only
 storage inspection supports the [backup/recovery notes](BACKUP_RESTORE.md) bonus;
 it does not change this runtime verification timestamp or constitute a restore
-test. Other bonus features remain outside this hand-in.
+test. The later [basic RBAC verification](RBAC.md) separately records 92 passing
+authorization checks and unchanged application/monitoring availability. Neither
+follow-up changes the required-platform verification timestamp above. Alerting
+and GitOps remain outside this hand-in.

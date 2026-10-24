@@ -1,0 +1,1186 @@
+{
+  "identity": "system:serviceaccount:demo:demo-reader",
+  "impersonation_groups": [
+    "system:serviceaccounts",
+    "system:serviceaccounts:demo",
+    "system:authenticated"
+  ],
+  "authorization_checks": [
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "update",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "patch",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "delete",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "deletecollection",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "update",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "patch",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "delete",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "deletecollection",
+      "resource": "services",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "update",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "patch",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "delete",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "deletecollection",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "log",
+      "expected": "yes",
+      "observed": "yes",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "update",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "patch",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "delete",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "deletecollection",
+      "resource": "secrets",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "pods",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "pods",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "services",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "services",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "services",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "deployments.apps",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "deployments.apps",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "deployments.apps",
+      "namespace": "default",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "default",
+      "subresource": "log",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "pods",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "pods",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "services",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "services",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "services",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "deployments.apps",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "deployments.apps",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "deployments.apps",
+      "namespace": "monitoring",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "monitoring",
+      "subresource": "log",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "pods",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "pods",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "services",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "services",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "services",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "deployments.apps",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "deployments.apps",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "watch",
+      "resource": "deployments.apps",
+      "namespace": "kube-system",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "kube-system",
+      "subresource": "log",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "pods",
+      "namespace": "*",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "services",
+      "namespace": "*",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "deployments.apps",
+      "namespace": "*",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "nodes",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "nodes",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "namespaces",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "namespaces",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "persistentvolumes",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "persistentvolumes",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "clusterroles.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "clusterroles.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "clusterrolebindings.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "list",
+      "resource": "clusterrolebindings.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "exec",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "exec",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "attach",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "attach",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "portforward",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "portforward",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "proxy",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "pods",
+      "namespace": "demo",
+      "subresource": "proxy",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "patch",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": "scale",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "update",
+      "resource": "deployments.apps",
+      "namespace": "demo",
+      "subresource": "scale",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "serviceaccounts",
+      "namespace": "demo",
+      "subresource": "token",
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "roles.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "create",
+      "resource": "rolebindings.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "bind",
+      "resource": "roles.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "escalate",
+      "resource": "roles.rbac.authorization.k8s.io",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "verb": "get",
+      "resource": "configmaps",
+      "namespace": "demo",
+      "subresource": null,
+      "expected": "no",
+      "observed": "no",
+      "exit_code": 1,
+      "passed": true
+    }
+  ],
+  "actual_allowed_reads": [
+    {
+      "operation": "list pods",
+      "exit_code": 0,
+      "resource_count": 2
+    },
+    {
+      "operation": "list services",
+      "exit_code": 0,
+      "resource_count": 1
+    },
+    {
+      "operation": "list deployments.apps",
+      "exit_code": 0,
+      "resource_count": 1
+    },
+    {
+      "operation": "get pods/log",
+      "exit_code": 0,
+      "log_contents_recorded": false
+    }
+  ],
+  "actual_forbidden_reads": [
+    {
+      "operation": "get pods -n monitoring -o name",
+      "exit_code": 1,
+      "reason": "Forbidden"
+    },
+    {
+      "operation": "get nodes -o name",
+      "exit_code": 1,
+      "reason": "Forbidden"
+    }
+  ],
+  "role_rules": [
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "pods",
+        "services"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "pods/log"
+      ],
+      "verbs": [
+        "get"
+      ]
+    },
+    {
+      "apiGroups": [
+        "apps"
+      ],
+      "resources": [
+        "deployments"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    }
+  ],
+  "service_account_automount": false,
+  "service_account_secret_references": 0,
+  "role_binding_scope": "demo",
+  "availability": {
+    "pods": [
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-llf2l",
+        "uid": "9b10b451-082d-423f-a03a-108d7eb95394",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-q246w",
+        "uid": "7028c9f6-3ae5-450e-ac1e-77c9b628de46",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-grafana-b58d6d649-b4ngr",
+        "uid": "600bc72b-8585-4154-94cf-c802333e87e8",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-kube-state-metrics-7c9c8f4687-c6b56",
+        "uid": "fee60654-228a-437d-96af-7efe126f2e56",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-operator-79c467758c-kvl4g",
+        "uid": "7498805c-f8bb-476a-8cc8-dd311f90b6da",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-rpsw4",
+        "uid": "5cd55a5a-886a-4033-9030-7e2d26be005f",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-w7n5v",
+        "uid": "b1242bdb-ed2d-4a60-b1e4-dc2422f68581",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "prometheus-monitoring-prometheus-0",
+        "uid": "0d74a5f6-f2ef-437c-b81e-2fd73640ec22",
+        "ready": true,
+        "restarts": 0
+      }
+    ],
+    "app_available_replicas": 2,
+    "grafana_database": "ok",
+    "prometheus_targets": {
+      "total": 15,
+      "down": 0
+    },
+    "app_http": [
+      {
+        "url": "http://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "http://95.133.252.141/healthz",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/healthz",
+        "http_status": 200
+      }
+    ]
+  },
+  "status": "PASS",
+  "verified_at": "2026-10-24T18:14:23.334164+00:00",
+  "action": "apply",
+  "baseline": {
+    "pods": [
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-llf2l",
+        "uid": "9b10b451-082d-423f-a03a-108d7eb95394",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-q246w",
+        "uid": "7028c9f6-3ae5-450e-ac1e-77c9b628de46",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-grafana-b58d6d649-b4ngr",
+        "uid": "600bc72b-8585-4154-94cf-c802333e87e8",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-kube-state-metrics-7c9c8f4687-c6b56",
+        "uid": "fee60654-228a-437d-96af-7efe126f2e56",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-operator-79c467758c-kvl4g",
+        "uid": "7498805c-f8bb-476a-8cc8-dd311f90b6da",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-rpsw4",
+        "uid": "5cd55a5a-886a-4033-9030-7e2d26be005f",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-w7n5v",
+        "uid": "b1242bdb-ed2d-4a60-b1e4-dc2422f68581",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "prometheus-monitoring-prometheus-0",
+        "uid": "0d74a5f6-f2ef-437c-b81e-2fd73640ec22",
+        "ready": true,
+        "restarts": 0
+      }
+    ],
+    "app_available_replicas": 2,
+    "grafana_database": "ok",
+    "prometheus_targets": {
+      "total": 15,
+      "down": 0
+    },
+    "app_http": [
+      {
+        "url": "http://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "http://95.133.252.141/healthz",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/healthz",
+        "http_status": 200
+      }
+    ]
+  },
+  "no_application_or_monitoring_rollout": true,
+  "long_lived_token_created": false,
+  "api_exposure_changed": false,
+  "source_sha256": {
+    "manifests/rbac.yaml": "59f523ddb77fa624902c73d0d5c7e2f4546c69e2bdee760b6d95c803d11eac7d",
+    "scripts/rbac.py": "c392fe3c98dcd75b291c17b99b74db46e39352afd3b7adc24c7b5198a26355db",
+    "scripts/remote/verify-rbac.py": "3e3fb621481e5872bfff120ccb9c2815f64676c9fc16084e82c00e6861030514"
+  }
+}
