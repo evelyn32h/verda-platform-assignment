@@ -92,6 +92,7 @@ overwrite an unmanaged k3s installation or an existing active UFW policy.
 To resume only workload deployment after initial cluster bootstrap, run
 `python scripts/platform.py workloads`. To update project firewall rules with
 the same timer and fresh-SSH confirmation, run `python scripts/platform.py firewall`.
+To apply only the app manifests and wait for rollout, run `python scripts/platform.py app`.
 `python scripts/export-evidence.py .local/evidence/<successful-verify-UTC>` exports
 a sanitized hand-in record from a successful verification run.
 
@@ -113,7 +114,7 @@ digest locking and image scanning are follow-up improvements.
 After successful validation:
 
 * App: `http://95.133.252.141/` and `https://95.133.252.141/`.
-* Health: `/healthz`.
+* Health: `/healthz` returns `200 OK`, `Content-Type: text/plain`, and `ok\n`.
 * Kubernetes: `ssh root@95.133.252.141`, then `k3s kubectl get nodes -o wide`.
 * Grafana: use the tunnel below, then `http://localhost:3000` and
   `/d/verda-platform/verda-platform-overview`.

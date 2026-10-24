@@ -137,10 +137,17 @@ def verify_external(remotes):
         for path in ("/", "/healthz"):
             url = f"{scheme}://{CONFIG['server']}{path}"
             with urllib.request.urlopen(url, timeout=20, context=context) as response:
-                body = response.read().decode().strip()
-                content_ok = body == "ok" if path == "/healthz" else "The platform is running." in body
+                payload = response.read()
+                body = payload.decode()
+                content_ok = payload == b"ok\n" if path == "/healthz" else "The platform is running." in body
                 assert response.status == 200 and content_ok, (url, body)
-                checks.append({"check": url, "status": "PASS", "http_status": response.status})
+                if path == "/healthz":
+                    assert response.headers.get_content_type() == "text/plain", dict(response.headers)
+                    assert response.headers.get_content_disposition() != "attachment", dict(response.headers)
+                checks.append({"check": url, "status": "PASS", "http_status": response.status,
+                               "content_type": response.headers.get("Content-Type"),
+                               "content_disposition": response.headers.get("Content-Disposition"),
+                               **({"body": body} if path == "/healthz" else {})})
     service = json.loads(remotes["server"].run(
         "k3s kubectl -n kube-system get svc traefik -o json", "ingress-nodeports", sensitive=True))
     node_ports = [entry["nodePort"] for entry in service["spec"]["ports"] if entry.get("nodePort")]
@@ -161,7 +168,7 @@ def verify_external(remotes):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=["preflight", "deploy", "firewall", "workloads", "verify", "upload"])
+    parser.add_argument("action", choices=["preflight", "deploy", "firewall", "app", "workloads", "verify", "upload"])
     parser.add_argument("--identity", type=Path,
                         default=Path.home() / ".ssh" / "verda_assignment")
     args = parser.parse_args()
@@ -177,6 +184,12 @@ def main():
             verify(remotes)
         elif args.action == "verify":
             verify(remotes)
+        elif args.action == "app":
+            remotes["server"].upload()
+            remotes["server"].run(
+                "set -eu; k3s kubectl apply --server-side -f /opt/verda-platform/manifests/app.yaml; "
+                "k3s kubectl -n demo rollout status deployment/demo --timeout=300s",
+                "deploy-app", timeout=360)
         elif args.action == "firewall":
             preflight(remotes)
             prepare_nodes(remotes)

@@ -43,6 +43,10 @@ on the server.
 - Initial metrics checks found only one node-exporter. Traffic to the worker's
   host-network endpoint was source-masqueraded and blocked by the firewall.
   Peer-only TCP 9100 fixed collection while external access remained blocked.
+- A follow-up fixed the health endpoint MIME type from application/octet-stream
+  to text/plain with an exact nginx location. HTTP/HTTPS still return status 200
+  and the original three-byte body; probe definitions are unchanged. Revision-aware
+  topology spread preserves one app replica per node through the rolling update.
 
 Raw troubleshooting and final evidence are saved locally. The sanitized record
 includes timestamps, query values, certificate metadata, external connection

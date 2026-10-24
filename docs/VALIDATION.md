@@ -1,7 +1,8 @@
 # Validation record
 
 Status: **PASS — all required items deployed and verified**.
-Final verification: **2026-10-24 16:52:36 UTC** (18:52:36 Europe/Berlin).
+Final verification: **2026-10-24 17:44:59 UTC** (19:44:59 Europe/Berlin),
+refreshed after the health endpoint fix.
 
 | Required item / check | Observed result |
 |---|---|
@@ -11,6 +12,7 @@ Final verification: **2026-10-24 16:52:36 UTC** (18:52:36 Europe/Berlin).
 | TLS approach | PASS: self-signed IP SAN certificate; HTTPS verified with certificate trust, without -k |
 | Metrics server | PASS: metrics API Available; live kubectl top for both nodes and app Pods |
 | External app | PASS: HTTP/HTTPS index and /healthz each return 200 with expected content |
+| Health endpoint response type | PASS: HTTP and HTTPS return text/plain, exact body `ok\n`, and no attachment disposition |
 | App manifests | PASS: two available replicas on distinct nodes, unprivileged containers |
 | Monitoring | PASS: Prometheus/Grafana running, chart 90.1.2; Grafana reports 13.2.1 |
 | Useful dashboard | PASS: six panels queried through Grafana's datasource proxy, all return data |
@@ -24,7 +26,7 @@ Sanitized machine-readable evidence: [required-checks.json](evidence/required-ch
 It includes actual query values, 18 external checks, certificate metadata, and
 SHA-256 hashes for deployment sources and raw evidence files.
 
-Full evidence remains local under `.local/evidence/20261024T165150Z/`, excluded
+Full evidence remains local under `.local/evidence/20261024T174414Z/`, excluded
 from Git. Other timestamped directories preserve preflight, deployment,
 troubleshooting and earlier failed checks. No passwords, private keys,
 kubeconfigs or join credentials appear in the committed evidence.
@@ -37,6 +39,14 @@ kubeconfigs or join credentials appear in the committed evidence.
    are now collected; the port remains unreachable from the external client.
 4. Allowed DHCPv4 replies for lease renewal. Firewall changes used a timed
    rollback and fresh SSH confirmation; the persistent firewall service is enabled.
+5. Fixed `/healthz` serving `application/octet-stream` by adding an exact nginx
+   location with `default_type text/plain`. Status 200, the original three-byte
+   `ok\n` body, and readiness/liveness probe definitions are unchanged. Public
+   HTTP and certificate-validated HTTPS both passed the new header/body assertions.
+6. During that rollout, existing Pods influenced topology spread and the new
+   replicas briefly landed on one node. Adding `matchLabelKeys: [pod-template-hash]`
+   restored one replica per node and keeps the constraint scoped to each revision.
+   Live metrics were rechecked after samples became available for the new Pods.
 
 ## Limits
 

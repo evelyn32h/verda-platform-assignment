@@ -38,6 +38,13 @@ An intentionally destructive application removal is `kubectl delete -f
 /opt/verda-platform/manifests/app.yaml`; deleting its Namespace also deletes the
 TLS Secret and other resources in that namespace.
 
+The exact `/healthz` nginx location serves the original static file with
+`Content-Type: text/plain`; both readiness and liveness probes still use that
+path. The `demo-nginx` ConfigMap mounts `default.conf` using `subPath`. After
+editing that ConfigMap, run `k3s kubectl -n demo rollout restart deployment/demo`
+and wait for rollout to load it. Topology spread uses `pod-template-hash` so
+each new Deployment revision remains spread across the two nodes during updates.
+
 ## Firewall rollback
 
 Before applying rules, `prepare-node.sh` stores the old host ruleset as evidence

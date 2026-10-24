@@ -1,7 +1,7 @@
 {
   "status": "PASS",
-  "verified_at": "2026-10-24T16:52:36.054850+00:00",
-  "raw_evidence_directory": ".local/evidence/20261024T165150Z",
+  "verified_at": "2026-10-24T17:44:59.920868+00:00",
+  "raw_evidence_directory": ".local/evidence/20261024T174414Z",
   "hosts": {
     "server": "95.133.252.141",
     "worker": "95.133.254.68"
@@ -47,38 +47,48 @@
       "13"
     ],
     "Node CPU used (%)": [
-      "1.4064814814815252",
-      "0.40833333333365474"
+      "1.6749999999998377",
+      "0.7648148148148293"
     ],
     "Node memory used (%)": [
-      "13.290061868603287",
-      "4.44035173424524"
+      "13.264976371513526",
+      "4.374645823155843"
     ],
     "Node root filesystem used (%)": [
-      "22.238993251000295",
-      "16.833257156674964"
+      "22.35031206134359",
+      "16.833265206339465"
     ]
   },
   "external_checks": [
     {
       "check": "http://95.133.252.141/",
       "status": "PASS",
-      "http_status": 200
+      "http_status": 200,
+      "content_type": "text/html",
+      "content_disposition": null
     },
     {
       "check": "http://95.133.252.141/healthz",
       "status": "PASS",
-      "http_status": 200
+      "http_status": 200,
+      "content_type": "text/plain",
+      "content_disposition": null,
+      "body": "ok\n"
     },
     {
       "check": "https://95.133.252.141/",
       "status": "PASS",
-      "http_status": 200
+      "http_status": 200,
+      "content_type": "text/html",
+      "content_disposition": null
     },
     {
       "check": "https://95.133.252.141/healthz",
       "status": "PASS",
-      "http_status": 200
+      "http_status": 200,
+      "content_type": "text/plain",
+      "content_disposition": null,
+      "body": "ok\n"
     },
     {
       "host": "95.133.252.141",
@@ -171,23 +181,23 @@
     "sha256_fingerprint": "88:8E:50:61:A7:79:4D:33:09:CE:39:24:3E:82:FC:18:B5:17:96:66:95:A5:FF:CE:CC:49:EE:A3:90:0D:AD:34"
   },
   "raw_file_sha256": {
-    "95.133.252.141-node-security.txt": "6740a944d09de041fd9f6221d0a0e85c86b43c277413f41cfca0303ca0fb34e1",
-    "95.133.252.141-verify.txt": "9137cfbeb2a94042d7458ddfd4219199f342042db177015b2c505563239c4548",
-    "95.133.254.68-node-security.txt": "ab31ceb0d64a7257e8164bf476ba07d0aca79830f0316f549e65291ee9f831ed",
+    "95.133.252.141-node-security.txt": "916e7f050a03bb1fcd5690b5c5a4a3999fddab7772be9c24620f84a03b51a982",
+    "95.133.252.141-verify.txt": "c8db6abf04050e274d3eef00dc99e3cacd6d7f160245525f3132063545dc7275",
+    "95.133.254.68-node-security.txt": "51e0016b281d060b5712092461b4f4f787b256b9c9f8dc9031d4ac570b6dbdbb",
     "demo-public.crt": "6a1705f930d50f31638ed6c7eb0a03aaa84fcbb60bf2a44035c0703f9e1b4310",
-    "external-checks.json": "ce6618945c41e72cb1f69432f1bb0c291573272434b0dd644bd39168363c2299",
-    "run.json": "4558a9b4eaa2ce84a8779c177c7973cdf450df9464cf9e5dc4f974eae7294483"
+    "external-checks.json": "ec1062d5cedd800bc30b1655d04e64a71246da9a6172530428c29c37dba0ed8b",
+    "run.json": "f6308838af9aa5d6ef4eb8e3a34bf83dbb4188fbaaed9125488c039687a90fd2"
   },
   "deployment_source_sha256": {
     "platform.json": "9ce80cfa7e54f6aaf9000b71fd077b28670158852f9e7fa226e94ec729289f7e",
-    "scripts/platform.py": "86932930406542d5b7ca351673e9141e99a64653b056a01d8e83d446637eb03e",
+    "scripts/platform.py": "e733a1395dbbaf584c446a5e8b0faea18909d232688f592653c44af790a746c7",
     "scripts/remote/deploy-workloads.sh": "a8633fbf3692fec45a09afd6f94f119de380ea80ec23f7ef520a4c02701e4c0f",
     "scripts/remote/install-server.sh": "83150d02128c23fa170e536ca884dae7563dc0ac0b6f43b0182ab4097c013d52",
     "scripts/remote/install-worker.sh": "7a251568d0b8b40a49524475ed10935061310a427d60466277aaa151f76d787c",
     "scripts/remote/preflight.sh": "407c91ed900745817a8069ad42c7a8ba13bbdbd46dbd681871ee647f5f7ce9ff",
     "scripts/remote/prepare-node.sh": "ced11251564fa23341ca00c50e49cf54e64bfefb677e72f0b57c2dfbb186ae5e",
     "scripts/remote/verify.sh": "50a12ebec5fa8d95f8a4a1a87c2091e20420d1d2b8ab5b01f5e414408a398e05",
-    "manifests/app.yaml": "c002cd464487dfc3d68cb41610ce93f58cdf110db57358853e9323f8a84cde99",
+    "manifests/app.yaml": "898048d5ebeff06db0c66d0db5ab91927b4ed4e2a23bd2b2e76f94d97491b42d",
     "manifests/dashboard.yaml": "306526b2c74a4c563d950b710845a483e46f28fc3de858c0c543a5a3852bc757",
     "manifests/monitoring.yaml": "92cd156d962ee57d763df7c5e702281791d4b4866b86b6b5534dc0c1d0f8d019"
   }
