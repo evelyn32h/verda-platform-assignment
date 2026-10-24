@@ -11,6 +11,8 @@ results and sanitized evidence; the README contains access instructions.
 Deployment scripts, workload manifests, monitoring configuration, a custom
 dashboard and operator documentation are included in this Git repository.
 Bonus GitOps, custom RBAC and alerting were deferred.
+The backup/recovery **notes** bonus is now complete; its procedures have not been
+executed or validated through a restore drill.
 
 ## Architecture
 
@@ -74,6 +76,25 @@ encrypted; node-exporter uses HTTP restricted to the peer host. Single-server
 control plane, public entry point and node-local monitoring storage limit
 availability. Upstream image versions and observed digests are recorded; no
 vulnerability scan or immutable digest deployment is claimed.
+
+## Backup/recovery notes bonus
+
+[BACKUP_RESTORE.md](BACKUP_RESTORE.md) replaces the earlier brief backup paragraph
+with coverage of the SQLite datastore, matching server token, Secrets encryption
+material, host configuration and the two server-local monitoring PVs. Read-only
+inspection confirmed a Grafana SQLite file, Delete reclaim policies, server node
+affinity, and the Prometheus `prometheus-db` mount subdirectory. The current
+Prometheus admin snapshot API is disabled.
+
+The runbook describes a future coordinated backup window, full-identity SQLite
+recovery with original PV/PVC bindings, and post-restore data checks. It explicitly
+distinguishes metadata from volume contents and Git dashboards from UI/database
+state. It records the risk of deleting local-path claims, ownership requirements,
+fresh-cluster rebinding limits, unmeasured RPO/RTO and absent off-host automation.
+Only metadata/file existence was inspected; services were not stopped, and no
+backup, snapshot, integrity check or recovery was executed. The sanitized
+[inventory](evidence/backup-inventory.json) supports the observed layout. The
+owner also independently confirmed the public app, health endpoint and six panels.
 
 ## With more time
 

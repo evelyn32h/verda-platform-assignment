@@ -1,0 +1,213 @@
+{
+  "status": "READ_ONLY_INVENTORY_COMPLETE_NOT_A_BACKUP_OR_RESTORE_TEST",
+  "captured_at": "2026-10-24T17:57:07.286337+00:00",
+  "server": "verda-k3s-server",
+  "k3s_version": "k3s version v1.35.9+k3s1 (58877f27)",
+  "k3s_service": "active",
+  "control_plane_database": "SQLite",
+  "control_plane_paths": [
+    {
+      "path": "/var/lib/rancher/k3s/server/db/state.db",
+      "exists": true
+    },
+    {
+      "path": "/var/lib/rancher/k3s/server/db/state.db-wal",
+      "exists": true
+    },
+    {
+      "path": "/var/lib/rancher/k3s/server/db/state.db-shm",
+      "exists": true
+    },
+    {
+      "path": "/var/lib/rancher/k3s/server/token",
+      "exists": true
+    },
+    {
+      "path": "/var/lib/rancher/k3s/server/cred/encryption-config.json",
+      "exists": true
+    },
+    {
+      "path": "/var/lib/rancher/k3s/server/tls",
+      "exists": true
+    },
+    {
+      "path": "/etc/rancher/k3s/config.yaml",
+      "exists": true
+    },
+    {
+      "path": "/etc/rancher/node/password",
+      "exists": true
+    }
+  ],
+  "monitoring_volumes": [
+    {
+      "pvc": "monitoring-grafana",
+      "pv": "pvc-753a13ff-552c-4830-8d70-d2728c8f9644",
+      "phase": "Bound",
+      "capacity": {
+        "storage": "2Gi"
+      },
+      "storageClass": "local-path",
+      "reclaimPolicy": "Delete",
+      "nodeAffinity": {
+        "required": {
+          "nodeSelectorTerms": [
+            {
+              "matchExpressions": [
+                {
+                  "key": "kubernetes.io/hostname",
+                  "operator": "In",
+                  "values": [
+                    "verda-k3s-server"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "hostPath": "/var/lib/rancher/k3s/storage/pvc-753a13ff-552c-4830-8d70-d2728c8f9644_monitoring_monitoring-grafana",
+      "mounts": [
+        {
+          "pod": "monitoring-grafana-b58d6d649-b4ngr",
+          "node": "verda-k3s-server",
+          "container": "grafana",
+          "image": "docker.io/grafana/grafana:13.2.1-distroless",
+          "mountPath": "/var/lib/grafana",
+          "subPath": null,
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "privileged": false,
+            "readOnlyRootFilesystem": true,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "podSecurityContext": {
+            "fsGroup": 472,
+            "runAsGroup": 472,
+            "runAsNonRoot": true,
+            "runAsUser": 472
+          }
+        }
+      ],
+      "directory": {
+        "path": "/var/lib/rancher/k3s/storage/pvc-753a13ff-552c-4830-8d70-d2728c8f9644_monitoring_monitoring-grafana",
+        "exists": true,
+        "bytes": 4096,
+        "uid": 472,
+        "gid": 472,
+        "mode": "0o2777"
+      },
+      "grafana_database": {
+        "path": "/var/lib/rancher/k3s/storage/pvc-753a13ff-552c-4830-8d70-d2728c8f9644_monitoring_monitoring-grafana/grafana.db",
+        "exists": true,
+        "bytes": 2490368,
+        "uid": 472,
+        "gid": 472,
+        "mode": "0o640"
+      },
+      "prometheus_subdirectory": {
+        "path": "/var/lib/rancher/k3s/storage/pvc-753a13ff-552c-4830-8d70-d2728c8f9644_monitoring_monitoring-grafana/prometheus-db",
+        "exists": false
+      }
+    },
+    {
+      "pvc": "prometheus-monitoring-prometheus-db-prometheus-monitoring-prometheus-0",
+      "pv": "pvc-7785357d-d838-4a4c-b93d-1828811321e1",
+      "phase": "Bound",
+      "capacity": {
+        "storage": "10Gi"
+      },
+      "storageClass": "local-path",
+      "reclaimPolicy": "Delete",
+      "nodeAffinity": {
+        "required": {
+          "nodeSelectorTerms": [
+            {
+              "matchExpressions": [
+                {
+                  "key": "kubernetes.io/hostname",
+                  "operator": "In",
+                  "values": [
+                    "verda-k3s-server"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "hostPath": "/var/lib/rancher/k3s/storage/pvc-7785357d-d838-4a4c-b93d-1828811321e1_monitoring_prometheus-monitoring-prometheus-db-prometheus-monitoring-prometheus-0",
+      "mounts": [
+        {
+          "pod": "prometheus-monitoring-prometheus-0",
+          "node": "verda-k3s-server",
+          "container": "prometheus",
+          "image": "quay.io/prometheus/prometheus:v3.14.0-distroless",
+          "mountPath": "/prometheus",
+          "subPath": "prometheus-db",
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "podSecurityContext": {
+            "fsGroup": 2000,
+            "runAsGroup": 2000,
+            "runAsNonRoot": true,
+            "runAsUser": 1000,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          }
+        }
+      ],
+      "directory": {
+        "path": "/var/lib/rancher/k3s/storage/pvc-7785357d-d838-4a4c-b93d-1828811321e1_monitoring_prometheus-monitoring-prometheus-db-prometheus-monitoring-prometheus-0",
+        "exists": true,
+        "bytes": 4096,
+        "uid": 0,
+        "gid": 2000,
+        "mode": "0o2777"
+      },
+      "grafana_database": {
+        "path": "/var/lib/rancher/k3s/storage/pvc-7785357d-d838-4a4c-b93d-1828811321e1_monitoring_prometheus-monitoring-prometheus-db-prometheus-monitoring-prometheus-0/grafana.db",
+        "exists": false
+      },
+      "prometheus_subdirectory": {
+        "path": "/var/lib/rancher/k3s/storage/pvc-7785357d-d838-4a4c-b93d-1828811321e1_monitoring_prometheus-monitoring-prometheus-db-prometheus-monitoring-prometheus-0/prometheus-db",
+        "exists": true,
+        "bytes": 4096,
+        "uid": 0,
+        "gid": 2000,
+        "mode": "0o2777"
+      }
+    }
+  ],
+  "replicas": {
+    "grafana": 1,
+    "prometheus": 1
+  },
+  "prometheus_enableAdminAPI": false,
+  "prometheus_configured_retention": "2d",
+  "prometheus_configured_retention_size": "4GB",
+  "service_stop_performed": false,
+  "workload_scaling_performed": false,
+  "backup_created": false,
+  "snapshot_created": false,
+  "restore_performed": false,
+  "secret_contents_read": false,
+  "off_host_transfer_tested": false,
+  "rpo_measured": false,
+  "rto_measured": false
+}

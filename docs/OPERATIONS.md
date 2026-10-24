@@ -100,13 +100,13 @@ This does not remove the VMs, revoke SSH keys, or reverse provider billing.
 ## Backup and availability tradeoffs
 
 The single server uses SQLite, so the control plane is **not highly available**.
-Before teardown or a risky upgrade, stop k3s and back up
-`/var/lib/rancher/k3s/server/db/`, `/var/lib/rancher/k3s/server/token`, and
-`/etc/rancher/k3s/` into encrypted off-host storage, then restart it. Protect the
-credential with the same care as a root password. A restore uses the same k3s
-version and matching credential; follow the upstream SQLite backup procedure.
-Prometheus (10 GiB, 2-day/4-GB retention) and Grafana (2 GiB) use local-path PVCs
-on the server; back up their data separately. No backup/restore drill is claimed.
+The complete [backup and recovery runbook](BACKUP_RESTORE.md) records the observed
+SQLite files, matching credentials/encryption material, both local-path PVs,
+their Delete policy, and the Prometheus data subdirectory. It distinguishes
+control-plane recovery from monitoring data recovery and describes a future
+coordinated maintenance backup, restoration, verification and failure limits.
+Only read-only inventory and documentation were completed; no service was
+stopped and no data backup or recovery drill was performed.
 
 The two app replicas are spread across nodes. This protects a Pod failure but
 does not make the single ingress/control-plane or node-local monitoring storage

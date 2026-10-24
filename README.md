@@ -15,6 +15,8 @@ The required outcome is a two-node k3s cluster, Traefik ingress, metrics-server,
 an externally reachable sample application with manifests, a documented TLS
 approach, Prometheus/Grafana with a useful dashboard, and access/operations notes.
 The bonus GitOps, RBAC, and alerting work is deliberately excluded.
+The [backup/recovery notes](docs/BACKUP_RESTORE.md) bonus is documented against
+the actual SQLite/local-path layout; backup and restore execution remain untested.
 
 ## Architecture and network
 

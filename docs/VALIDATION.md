@@ -55,5 +55,7 @@ not automatic. The control plane, public ServiceLB endpoint and monitoring disks
 depend on the single server. HTTP remains enabled for this demonstration. Access
 was tested from the operator's external client, not every Internet network.
 Grafana authentication and panel data were verified via API; no screenshot is
-claimed. No VM reboot or backup/restore drill was performed. Bonus features
-remain outside this hand-in.
+claimed. No VM reboot or backup/restore drill was performed. A later read-only
+storage inspection supports the [backup/recovery notes](BACKUP_RESTORE.md) bonus;
+it does not change this runtime verification timestamp or constitute a restore
+test. Other bonus features remain outside this hand-in.
