@@ -1,0 +1,10 @@
+{
+  "server": "95.133.252.141",
+  "worker": "95.133.254.68",
+  "server_name": "verda-k3s-server",
+  "worker_name": "verda-k3s-worker",
+  "k3s_version": "v1.35.9+k3s1",
+  "monitoring_chart_version": "90.1.2",
+  "pod_cidr": "10.42.0.0/16",
+  "service_cidr": "10.43.0.0/16"
+}

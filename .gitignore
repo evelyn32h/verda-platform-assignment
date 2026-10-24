@@ -1,0 +1,36 @@
+# Credentials and all raw execution output stay local.
+.local/
+.cache/
+tmp/
+output/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.kubeconfig
+kubeconfig*
+!docs/kubeconfig-example.md
+id_rsa*
+id_ed25519*
+verda_assignment*
+*token*
+*secret*
+!**/*secret*.example.yaml
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+!*.tfvars.example
+*.log
+*.tar
+*.tar.gz
+*.zip
+__pycache__/
+.venv/
+.DS_Store
+Thumbs.db
+# The supplied assignment may contain third-party material; keep locally.
+junior-mid-level-assignment-platform-engineer.pdf

@@ -1,0 +1,194 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-10-24T16:52:36.054850+00:00",
+  "raw_evidence_directory": ".local/evidence/20261024T165150Z",
+  "hosts": {
+    "server": "95.133.252.141",
+    "worker": "95.133.254.68"
+  },
+  "k3s_version": "v1.35.9+k3s1",
+  "monitoring_chart_version": "90.1.2",
+  "checks": [
+    "APP_REPLICAS=2",
+    "APP_SPREAD_ACROSS_TWO_NODES=PASS",
+    "METRICS_API=AVAILABLE",
+    "MONITORING_SERVICES_PRIVATE=PASS",
+    "ALL_REQUIRED_REMOTE_CHECKS_PASS"
+  ],
+  "prometheus_queries": {
+    "ready_nodes": 2.0,
+    "app_replicas": 2.0,
+    "node_exporters": 2.0,
+    "node_memory_series": 2.0,
+    "node_cpu_series": 2.0
+  },
+  "prometheus_targets": {
+    "total": 15,
+    "down": []
+  },
+  "grafana": {
+    "health": {
+      "database": "ok",
+      "version": "13.2.1",
+      "commit": "56cd3e9288d8255fecebe5d05b48d191f50674b5"
+    },
+    "dashboard": "Verda Platform Overview",
+    "uid": "verda-platform",
+    "panels": 6
+  },
+  "dashboard_panel_values": {
+    "Ready nodes (expected: 2)": [
+      "2"
+    ],
+    "Available app replicas (expected: 2)": [
+      "2"
+    ],
+    "Running pods": [
+      "13"
+    ],
+    "Node CPU used (%)": [
+      "1.4064814814815252",
+      "0.40833333333365474"
+    ],
+    "Node memory used (%)": [
+      "13.290061868603287",
+      "4.44035173424524"
+    ],
+    "Node root filesystem used (%)": [
+      "22.238993251000295",
+      "16.833257156674964"
+    ]
+  },
+  "external_checks": [
+    {
+      "check": "http://95.133.252.141/",
+      "status": "PASS",
+      "http_status": 200
+    },
+    {
+      "check": "http://95.133.252.141/healthz",
+      "status": "PASS",
+      "http_status": 200
+    },
+    {
+      "check": "https://95.133.252.141/",
+      "status": "PASS",
+      "http_status": 200
+    },
+    {
+      "check": "https://95.133.252.141/healthz",
+      "status": "PASS",
+      "http_status": 200
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 6443,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 10250,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 9100,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 3000,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 9090,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 30677,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 32191,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 6443,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 10250,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 9100,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 3000,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 9090,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 30677,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 32191,
+      "externally_reachable": false,
+      "result": "TimeoutError"
+    }
+  ],
+  "tls": {
+    "type": "self-signed IP certificate",
+    "not_after": "Nov 23 15:22:06 2026 GMT",
+    "sha256_fingerprint": "88:8E:50:61:A7:79:4D:33:09:CE:39:24:3E:82:FC:18:B5:17:96:66:95:A5:FF:CE:CC:49:EE:A3:90:0D:AD:34"
+  },
+  "raw_file_sha256": {
+    "95.133.252.141-node-security.txt": "6740a944d09de041fd9f6221d0a0e85c86b43c277413f41cfca0303ca0fb34e1",
+    "95.133.252.141-verify.txt": "9137cfbeb2a94042d7458ddfd4219199f342042db177015b2c505563239c4548",
+    "95.133.254.68-node-security.txt": "ab31ceb0d64a7257e8164bf476ba07d0aca79830f0316f549e65291ee9f831ed",
+    "demo-public.crt": "6a1705f930d50f31638ed6c7eb0a03aaa84fcbb60bf2a44035c0703f9e1b4310",
+    "external-checks.json": "ce6618945c41e72cb1f69432f1bb0c291573272434b0dd644bd39168363c2299",
+    "run.json": "4558a9b4eaa2ce84a8779c177c7973cdf450df9464cf9e5dc4f974eae7294483"
+  },
+  "deployment_source_sha256": {
+    "platform.json": "9ce80cfa7e54f6aaf9000b71fd077b28670158852f9e7fa226e94ec729289f7e",
+    "scripts/platform.py": "86932930406542d5b7ca351673e9141e99a64653b056a01d8e83d446637eb03e",
+    "scripts/remote/deploy-workloads.sh": "a8633fbf3692fec45a09afd6f94f119de380ea80ec23f7ef520a4c02701e4c0f",
+    "scripts/remote/install-server.sh": "83150d02128c23fa170e536ca884dae7563dc0ac0b6f43b0182ab4097c013d52",
+    "scripts/remote/install-worker.sh": "7a251568d0b8b40a49524475ed10935061310a427d60466277aaa151f76d787c",
+    "scripts/remote/preflight.sh": "407c91ed900745817a8069ad42c7a8ba13bbdbd46dbd681871ee647f5f7ce9ff",
+    "scripts/remote/prepare-node.sh": "ced11251564fa23341ca00c50e49cf54e64bfefb677e72f0b57c2dfbb186ae5e",
+    "scripts/remote/verify.sh": "50a12ebec5fa8d95f8a4a1a87c2091e20420d1d2b8ab5b01f5e414408a398e05",
+    "manifests/app.yaml": "c002cd464487dfc3d68cb41610ce93f58cdf110db57358853e9323f8a84cde99",
+    "manifests/dashboard.yaml": "306526b2c74a4c563d950b710845a483e46f28fc3de858c0c543a5a3852bc757",
+    "manifests/monitoring.yaml": "92cd156d962ee57d763df7c5e702281791d4b4866b86b6b5534dc0c1d0f8d019"
+  }
+}
