@@ -60,5 +60,8 @@ storage inspection supports the [backup/recovery notes](BACKUP_RESTORE.md) bonus
 it does not change this runtime verification timestamp or constitute a restore
 test. The later [basic RBAC verification](RBAC.md) separately records 92 passing
 authorization checks and unchanged application/monitoring availability. Neither
-follow-up changes the required-platform verification timestamp above. Alerting
-and GitOps remain outside this hand-in.
+follow-up changes the required-platform verification timestamp above. A separately
+requested [alert test](ALERTS.md) subsequently verified rule loading and a synthetic
+Pending/Firing/recovery cycle, with cleanup and unchanged service health recorded
+in [alert-checks.json](evidence/alert-checks.json). External notification delivery
+is not configured/tested. GitOps remains outside this hand-in.

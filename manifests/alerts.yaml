@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: demo-availability
+  namespace: monitoring
+  labels:
+    release: monitoring
+    app.kubernetes.io/part-of: verda-platform
+spec:
+  groups:
+    - name: verda.demo.availability
+      interval: 15s
+      rules:
+        - alert: DemoAvailableReplicasLow
+          expr: kube_deployment_status_replicas_available{deployment="demo",namespace="demo"} < 2
+          for: 2m
+          labels:
+            severity: warning
+            app: demo
+          annotations:
+            summary: Demo deployment has fewer than two available replicas
+            description: 'demo/demo has {{ $value }} available replicas; at least two are expected. The condition has persisted for two minutes.'
+            action: 'Check Pod readiness, restarts, events, logs and node capacity. If a recent deployment caused the loss, roll back to the known-good revision and confirm two available replicas.'

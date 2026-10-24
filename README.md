@@ -15,7 +15,9 @@ The required outcome is a two-node k3s cluster, Traefik ingress, metrics-server,
 an externally reachable sample application with manifests, a documented TLS
 approach, Prometheus/Grafana with a useful dashboard, and access/operations notes.
 The bonus [basic RBAC](docs/RBAC.md) is deployed and verified for the demo
-namespace. GitOps/Argo CD and alerting remain excluded.
+namespace. A [simple application alert](docs/ALERTS.md) is loaded and its
+evaluation lifecycle verified; external notification delivery is not configured.
+GitOps/Argo CD remains excluded.
 The [backup/recovery notes](docs/BACKUP_RESTORE.md) bonus is documented against
 the actual SQLite/local-path layout; backup and restore execution remain untested.
 
@@ -163,6 +165,23 @@ python scripts/rbac.py verify
 See [policy and usage](docs/RBAC.md), [YAML](manifests/rbac.yaml) and the
 [92-check verification record](docs/evidence/rbac-checks.json). Both the app and
 monitoring passed before/after availability checks without a Pod restart/rollout.
+
+## Simple application alert
+
+`DemoAvailableReplicasLow` warns when `demo/demo` has fewer than two available
+replicas continuously for **2 minutes**, evaluated every 15 seconds. The rule's
+annotations explain checking readiness, logs/events and node capacity, and
+rolling back a faulty release. It reuses Prometheus Operator and the existing
+Prometheus instance; Alertmanager remains disabled and no external messages are sent.
+
+```powershell
+python scripts/alerts.py apply-test
+```
+
+The [rule YAML](manifests/alerts.yaml), [runbook](docs/ALERTS.md) and
+[verification evidence](docs/evidence/alert-checks.json) cover actual loading,
+a harmless synthetic Pending → Firing → Inactive test, cleanup and unchanged
+application/monitoring health. This validates triggering, not notification delivery.
 
 ## TLS approach
 

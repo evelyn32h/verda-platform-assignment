@@ -1,0 +1,354 @@
+{
+  "status": "PASS",
+  "started_at": "2026-10-24T18:26:26.849918+00:00",
+  "test_resource": {
+    "namespace": "monitoring",
+    "name": "demo-availability-smoke-20261024182626"
+  },
+  "observations": [
+    {
+      "observed_at": "2026-10-24T18:28:30.752983+00:00",
+      "state": "pending",
+      "query": "vector(1) < 2",
+      "last_evaluation": "2026-10-24T18:28:30.053913186Z",
+      "health": "ok",
+      "active_alerts": 1,
+      "group_interval_seconds": 5
+    },
+    {
+      "observed_at": "2026-10-24T18:29:01.718349+00:00",
+      "state": "firing",
+      "query": "vector(1) < 2",
+      "last_evaluation": "2026-10-24T18:29:00.054047994Z",
+      "health": "ok",
+      "active_alerts": 1,
+      "group_interval_seconds": 5
+    },
+    {
+      "observed_at": "2026-10-24T18:29:36.924988+00:00",
+      "state": "inactive",
+      "query": "vector(2) < 2",
+      "last_evaluation": "2026-10-24T18:29:35.054103192Z",
+      "health": "ok",
+      "active_alerts": 0,
+      "group_interval_seconds": 5
+    }
+  ],
+  "notifications_before": {
+    "alertmanager_resources": 0,
+    "active_alertmanager_targets": 0,
+    "external_notification_channel_configured": false,
+    "delivery_tested": false
+  },
+  "production_rule": {
+    "name": "DemoAvailableReplicasLow",
+    "state": "inactive",
+    "query": "kube_deployment_status_replicas_available{deployment=\"demo\",namespace=\"demo\"} < 2",
+    "for_seconds": 120,
+    "evaluation_interval_seconds": 15,
+    "health": "ok",
+    "source_file": "/etc/prometheus/rules/prometheus-monitoring-prometheus-rulefiles-0/monitoring-demo-availability-0a86f3e6-caf3-4da4-817d-6294b383c7d5.yaml",
+    "last_evaluation": "2026-10-24T18:27:28.416193715Z",
+    "last_error": ""
+  },
+  "production_available_replicas": 2,
+  "temporary_rule": {
+    "apiVersion": "monitoring.coreos.com/v1",
+    "kind": "PrometheusRule",
+    "metadata": {
+      "name": "demo-availability-smoke-20261024182626",
+      "namespace": "monitoring",
+      "labels": {
+        "release": "monitoring",
+        "verda-test": "20261024182626"
+      }
+    },
+    "spec": {
+      "groups": [
+        {
+          "name": "verda.demo.smoke.20261024182626",
+          "interval": "5s",
+          "rules": [
+            {
+              "alert": "DemoAvailabilitySmokeTest",
+              "expr": "vector(1) < 2",
+              "for": "30s",
+              "labels": {
+                "severity": "test",
+                "test_id": "20261024182626",
+                "namespace": "demo",
+                "deployment": "demo"
+              },
+              "annotations": {
+                "summary": "Synthetic availability pipeline test; no application outage"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "firing_confirmed_in_alerts_api": true,
+  "recovery_requested_at": "2026-10-24T18:29:01.782275+00:00",
+  "notifications_after": {
+    "alertmanager_resources": 0,
+    "active_alertmanager_targets": 0,
+    "external_notification_channel_configured": false,
+    "delivery_tested": false
+  },
+  "cleanup": {
+    "resource_deleted": true,
+    "rule_unloaded": true,
+    "active_test_alerts": 0
+  },
+  "production_rule_retained": true,
+  "finished_at": "2026-10-24T18:30:45.300527+00:00",
+  "availability_before": {
+    "pods": [
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-llf2l",
+        "uid": "9b10b451-082d-423f-a03a-108d7eb95394",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-q246w",
+        "uid": "7028c9f6-3ae5-450e-ac1e-77c9b628de46",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-grafana-b58d6d649-b4ngr",
+        "uid": "600bc72b-8585-4154-94cf-c802333e87e8",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-kube-state-metrics-7c9c8f4687-c6b56",
+        "uid": "fee60654-228a-437d-96af-7efe126f2e56",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-operator-79c467758c-kvl4g",
+        "uid": "7498805c-f8bb-476a-8cc8-dd311f90b6da",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-rpsw4",
+        "uid": "5cd55a5a-886a-4033-9030-7e2d26be005f",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-w7n5v",
+        "uid": "b1242bdb-ed2d-4a60-b1e4-dc2422f68581",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "prometheus-monitoring-prometheus-0",
+        "uid": "0d74a5f6-f2ef-437c-b81e-2fd73640ec22",
+        "ready": true,
+        "restarts": 0
+      }
+    ],
+    "app_available_replicas": 2,
+    "grafana_database": "ok",
+    "prometheus_targets": {
+      "total": 15,
+      "down": 0
+    },
+    "app_http": [
+      {
+        "url": "http://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "http://95.133.252.141/healthz",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/healthz",
+        "http_status": 200
+      }
+    ]
+  },
+  "availability_after": {
+    "pods": [
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-llf2l",
+        "uid": "9b10b451-082d-423f-a03a-108d7eb95394",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "demo",
+        "name": "demo-55ffd8f95b-q246w",
+        "uid": "7028c9f6-3ae5-450e-ac1e-77c9b628de46",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-grafana-b58d6d649-b4ngr",
+        "uid": "600bc72b-8585-4154-94cf-c802333e87e8",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-kube-state-metrics-7c9c8f4687-c6b56",
+        "uid": "fee60654-228a-437d-96af-7efe126f2e56",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-operator-79c467758c-kvl4g",
+        "uid": "7498805c-f8bb-476a-8cc8-dd311f90b6da",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-rpsw4",
+        "uid": "5cd55a5a-886a-4033-9030-7e2d26be005f",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "monitoring-prometheus-node-exporter-w7n5v",
+        "uid": "b1242bdb-ed2d-4a60-b1e4-dc2422f68581",
+        "ready": true,
+        "restarts": 0
+      },
+      {
+        "namespace": "monitoring",
+        "name": "prometheus-monitoring-prometheus-0",
+        "uid": "0d74a5f6-f2ef-437c-b81e-2fd73640ec22",
+        "ready": true,
+        "restarts": 0
+      }
+    ],
+    "app_available_replicas": 2,
+    "grafana_database": "ok",
+    "prometheus_targets": {
+      "total": 15,
+      "down": 0
+    },
+    "app_http": [
+      {
+        "url": "http://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "http://95.133.252.141/healthz",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/",
+        "http_status": 200
+      },
+      {
+        "url": "https://95.133.252.141/healthz",
+        "http_status": 200
+      }
+    ]
+  },
+  "no_application_or_monitoring_rollout": true,
+  "no_external_notifications_sent": true,
+  "source_sha256": {
+    "manifests/alerts.yaml": "fa9ee505261b7ef9aa136992202d2498287c4671edc9e05fc06a8a71a0e95bbf",
+    "scripts/alerts.py": "1b1a8b973a8e4e5452e5b4aa475b7f74c64712e52dbd127a364f39017dcf7c70",
+    "scripts/remote/verify-alerts.py": "15149dc4fd9235b49d135ecc4ac4234076354aced1223a2e3889ee7b0dfe0d42"
+  },
+  "configuration_before": {
+    "captured_at": "2026-10-24T18:21:35.805745+00:00",
+    "rule_selector": {
+      "matchLabels": {
+        "release": "monitoring"
+      }
+    },
+    "rule_namespace_selector": {},
+    "evaluation_interval": "30s",
+    "alerting_configuration": null,
+    "alertmanager_resources": [],
+    "alertmanager_discovery": {
+      "activeAlertmanagers": [],
+      "droppedAlertmanagers": []
+    },
+    "existing_rule_resources": [],
+    "loaded_groups": []
+  },
+  "configuration_after": {
+    "captured_at": "2026-10-24T18:33:17.527106+00:00",
+    "rule_selector": {
+      "matchLabels": {
+        "release": "monitoring"
+      }
+    },
+    "rule_namespace_selector": {},
+    "evaluation_interval": "30s",
+    "alerting_configuration": null,
+    "alertmanager_resources": [],
+    "alertmanager_discovery": {
+      "activeAlertmanagers": [],
+      "droppedAlertmanagers": []
+    },
+    "existing_rule_resources": [
+      {
+        "namespace": "monitoring",
+        "name": "demo-availability",
+        "labels": {
+          "app.kubernetes.io/part-of": "verda-platform",
+          "release": "monitoring"
+        }
+      }
+    ],
+    "loaded_groups": [
+      {
+        "name": "verda.demo.availability",
+        "rules": [
+          {
+            "state": "inactive",
+            "name": "DemoAvailableReplicasLow",
+            "query": "kube_deployment_status_replicas_available{deployment=\"demo\",namespace=\"demo\"} < 2",
+            "duration": 120,
+            "keepFiringFor": 0,
+            "labels": {
+              "app": "demo",
+              "severity": "warning"
+            },
+            "annotations": {
+              "action": "Check Pod readiness, restarts, events, logs and node capacity. If a recent deployment caused the loss, roll back to the known-good revision and confirm two available replicas.",
+              "description": "demo/demo has {{ $value }} available replicas; at least two are expected. The condition has persisted for two minutes.",
+              "summary": "Demo deployment has fewer than two available replicas"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.000208591,
+            "lastEvaluation": "2026-10-24T18:33:13.416549042Z",
+            "type": "alerting"
+          }
+        ]
+      }
+    ]
+  },
+  "raw_evidence_directory": ".local/evidence/20261024T182626Z"
+}

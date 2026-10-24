@@ -10,8 +10,9 @@ results and sanitized evidence; the README contains access instructions.
 
 Deployment scripts, workload manifests, monitoring configuration, a custom
 dashboard and operator documentation are included in this Git repository.
-The basic namespace RBAC bonus is deployed and verified. Bonus GitOps/Argo CD and
-alerting remain deferred.
+The basic namespace RBAC and simple application alert bonuses are deployed and
+verified. External notification delivery is not configured. GitOps/Argo CD remains
+deferred.
 The backup/recovery **notes** bonus is now complete; its procedures have not been
 executed or validated through a restore drill.
 
@@ -112,8 +113,37 @@ Mutation/Secret denial was tested with `kubectl auth can-i`, without executing
 mutations or reading Secrets. [Evidence](evidence/rbac-checks.json) records all
 decisions, actual reads and before/after service health. The application and
 monitoring retained the same Pod UIDs/restart counts, HTTP/HTTPS stayed healthy,
-Grafana health was ok and all 15 Prometheus targets remained up. No alerting or
-Argo CD work was started. [RBAC usage notes](RBAC.md) explain reproduction and scope.
+Grafana health was ok and all 15 Prometheus targets remained up. That RBAC change
+did not include alerting; the separately requested alert follow-up is recorded
+below. [RBAC usage notes](RBAC.md) explain reproduction and scope.
+
+## Simple alert bonus
+
+[manifests/alerts.yaml](../manifests/alerts.yaml) adds one PrometheusRule,
+`monitoring/demo-availability`, selected by the existing Operator through
+`release: monitoring`. `DemoAvailableReplicasLow` fires when the app's available
+replica metric stays below the intended floor of two for two minutes, with
+15-second evaluations and warning severity. Its annotations describe readiness,
+log/event and capacity checks plus rollback of a faulty release. Missing metric
+data is a known limitation of this single rule, not treated as zero.
+
+Read-only inspection confirmed that Alertmanager was disabled/not deployed and
+Prometheus had no notification targets. Those settings and the monitoring chart
+were not changed. The loaded production rule was healthy and Inactive with two
+available replicas. An independent synthetic rule with a 30-second hold was
+observed **Pending → Firing → Inactive** without scaling or disrupting the app.
+The firing instance was confirmed in the alerts API; recovery required a fresh
+evaluation of a false condition and no active test alert. The test CR was then
+deleted, its loaded rule removed, and the permanent rule retained. This is an
+accelerated engine test, not an actual app outage or a notification delivery test.
+
+[Evidence](evidence/alert-checks.json) records configuration discovery, timestamps,
+rule details, test inputs, cleanup and service health. All app/monitoring Pod
+identities and restart counts stayed unchanged; external HTTP/HTTPS, Grafana and
+all 15 scrape targets were healthy. **No external channel is configured, no
+notification was sent, and notification delivery is untested.** See
+[ALERTS.md](ALERTS.md) for the response procedure and reproducible test. Argo CD
+was not started.
 
 ## With more time
 
