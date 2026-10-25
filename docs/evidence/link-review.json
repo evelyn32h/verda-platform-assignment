@@ -139,11 +139,12 @@
   ],
   "local_markdown_links": {
     "status": "PASS",
-    "links_checked": 101,
+    "links_checked": 117,
     "errors": []
   },
   "separate_argo_ui_tunnel_check": {
     "evidence": "gitops-checks.json",
     "method": "UI HTML/version verified separately at loopback 18443; documented local 8080 reaches the same ClusterIP service"
-  }
+  },
+  "screenshot_review": "screenshot-review.json"
 }

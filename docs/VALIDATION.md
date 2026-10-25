@@ -80,8 +80,9 @@ The self-signed certificate expires **2026-11-23 15:22:06 UTC**. Browser trust i
 not automatic. The control plane, public ServiceLB endpoint and monitoring disks
 depend on the single server. HTTP remains enabled for this demonstration. Access
 was tested from the operator's external client, not every Internet network.
-Grafana authentication and panel data were verified via API; no screenshot is
-claimed. No VM reboot or backup/restore drill was performed. A later read-only
+Grafana authentication and panel data were verified via API in that run.
+Owner-provided screenshots were added later, as recorded below. No VM reboot or
+backup/restore drill was performed. A later read-only
 storage inspection supports the [backup/recovery notes](BACKUP_RESTORE.md) bonus;
 it does not change this runtime verification timestamp or constitute a restore
 test. The later [basic RBAC verification](RBAC.md) separately records 92 passing
@@ -115,5 +116,20 @@ the actual successful operation, and is recorded rather than hidden.
 
 See [GitOps evidence](evidence/gitops-checks.json), [final health](evidence/gitops-health.json),
 [live manifest comparison](evidence/gitops-manifest-consistency.json) and
-[operations/rollback](GITOPS.md). No authenticated UI login, automatic sync/prune,
-rollback/uninstall drill or external notification is claimed.
+[operations/rollback](GITOPS.md). That automated run did not test authenticated UI
+login. Automatic sync/prune, rollback/uninstall drills and external notifications
+remain untested; the subsequent owner UI confirmation is recorded below.
+
+## Owner screenshot acceptance — 25 October
+
+The owner personally logged in to Argo CD and confirmed `demo` **Healthy / Synced**
+with Sync OK at **`2bfe3c2`**. Three owner-provided screenshots show Verda VM status,
+the six Grafana panels and Argo application state. The four visible email regions
+in Verda/Argo were covered with opaque black rectangles. Dimensions and every
+pixel outside these rectangles remain identical; Grafana bytes are unchanged.
+Visual review and PNG metadata checks found no remaining personal email or
+credential in the release images. See [review record](evidence/screenshot-review.json)
+and the [README demonstration](../README.md#demonstration).
+
+The screenshot commit is capture-time evidence. No cluster connection, deployment
+or application sync was performed for this documentation/screenshot update.

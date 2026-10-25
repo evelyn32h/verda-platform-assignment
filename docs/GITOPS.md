@@ -50,7 +50,9 @@ ssh -i "$env:USERPROFILE\.ssh\verda_assignment" root@95.133.252.141 "k3s kubectl
 If the initial password was subsequently changed, use the current credential.
 Automated validation fetched UI HTML and version through a temporary SSH tunnel,
 accepted the self-signed certificate only on that loopback connection, and cleaned
-both forwards. It did not read this Secret or test authenticated UI login.
+both forwards. That automated run did not read this Secret or log in. The owner
+subsequently personally logged in and confirmed `demo` **Healthy / Synced** at
+`2bfe3c2`; see the [redacted screenshot](screenshots/03-argocd-demo.png).
 
 ## Normal updates and validation
 
@@ -116,6 +118,17 @@ part of this demonstration.
 [initial publication check](evidence/gitops-publication.json) contain timestamps,
 hashes and qualifications. Timestamped raw execution output stays ignored locally.
 
+## Owner UI confirmation and screenshots
+
+The owner personally logged in through the documented tunnel and captured
+`demo`, Healthy, Synced and Sync OK at **`2bfe3c2`**. This owner confirmation is
+separate from the earlier automated HTML/version check. Verda, Grafana and Argo
+screenshots are embedded in the [README demonstration](../README.md#demonstration).
+Four personal-email regions are opaque; all other pixels and the capture-time
+revision are preserved. Private originals remain ignored under `.local/`.
+[Review evidence](evidence/screenshot-review.json) records masks and checksums.
+This documentation/screenshot update did not access the cluster or sync the app.
+
 ## Rollback and emergency handback
 
 These are **documented future procedures**, not an executed rollback/uninstall
@@ -153,7 +166,7 @@ perform the explicit handback below if Argo itself is unavailable.
    its namespace/CRDs is a separate administrative operation and was not tested.
 
 This is a single-instance demo controller. No automatic pruning, HA, Git webhook,
-external notifications, UI login, credential rotation or backup/restore drill is
+external notifications, credential rotation or backup/restore drill is
 claimed. Backup/restore remains the separately completed notes-only bonus.
 
 References: [fixed release](https://github.com/argoproj/argo-cd/releases/tag/v3.5.6),

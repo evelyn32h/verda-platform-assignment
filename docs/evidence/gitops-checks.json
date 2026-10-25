@@ -343,9 +343,19 @@
   },
   "limits": [
     "Manual sync only; automatic sync/self-healing/pruning not enabled or tested.",
-    "UI HTML/version verified through SSH; authenticated UI login not performed.",
+    "The automated run did not perform authenticated UI login; subsequent owner login confirmation is recorded separately.",
     "Rollback/uninstall procedure documented but not executed.",
     "Non-HA standard Argo installation has cluster-level controller permissions; AppProject constrains this app.",
     "No external notifications, Git webhooks, HA, credential rotation or backup/restore drill configured or claimed."
-  ]
+  ],
+  "subsequent_owner_validation": {
+    "owner_confirmed_login": true,
+    "application": "demo",
+    "health": "Healthy",
+    "sync": "Synced",
+    "capture_time_revision": "2bfe3c2",
+    "screenshot": "docs/screenshots/03-argocd-demo.png",
+    "review_evidence": "docs/evidence/screenshot-review.json",
+    "new_cluster_access_or_sync_performed": false
+  }
 }

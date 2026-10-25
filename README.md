@@ -26,6 +26,30 @@ existing app, using manual sync with pruning disabled.
 The [backup/recovery notes](docs/BACKUP_RESTORE.md) bonus is documented against
 the actual SQLite/local-path layout; backup and restore execution remain untested.
 
+## Demonstration
+
+Owner-provided screenshots show the working platform. The owner personally
+logged in to Argo CD and confirmed `demo` was **Healthy / Synced** at commit
+**`2bfe3c2`**. That revision is the screenshot's capture-time evidence; subsequent
+documentation-only commits do not require another application sync.
+
+Verda: both CPU instances Running, with their names, public IPs and specifications.
+Personal email addresses are covered by opaque rectangles.
+
+![Two Verda CPU instances Running](docs/screenshots/01-verda-instances.png)
+
+Grafana: six panels, including two Ready nodes, two available app replicas and
+20 running Pods.
+
+![Grafana six-panel platform dashboard](docs/screenshots/02-grafana-dashboard.png)
+
+Argo CD: `demo`, Healthy, Synced, Sync OK and revision `2bfe3c2`; author emails
+are covered. All other screenshot pixels are unchanged.
+
+![Argo CD demo Healthy and Synced at 2bfe3c2](docs/screenshots/03-argocd-demo.png)
+
+See [screenshot review and checksums](docs/evidence/screenshot-review.json).
+
 ## Architecture and network
 
 ```mermaid
@@ -228,7 +252,9 @@ Open **https://localhost:8080** (Argo's default self-signed UI certificate warns
 User `admin` can retrieve the initial password in the owner's own terminal as
 described in [GitOps access, operation and rollback](docs/GITOPS.md). The automated
 check fetched UI HTML/version through a temporary SSH tunnel and cleaned it;
-authenticated UI login was not performed. No administrator credential is in Git.
+the automated check did not log in. The owner subsequently logged in and confirmed
+`demo` Healthy/Synced at `2bfe3c2`, as shown in the [demonstration](#demonstration).
+No administrator credential is in Git.
 See [GitOps evidence](docs/evidence/gitops-checks.json).
 
 ## Basic RBAC

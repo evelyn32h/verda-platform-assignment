@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-25T17:21:52.793744+00:00",
+  "method": "Opaque black rectangles over four email regions; original pixels preserved elsewhere; no image regeneration",
+  "originals_excluded_by_gitignore": true,
+  "owner_confirmed_argo_login": true,
+  "owner_observed_application": "demo",
+  "owner_observed_health": "Healthy",
+  "owner_observed_sync": "Synced",
+  "screenshot_revision": "2bfe3c2",
+  "screenshot_revision_is_capture_time_evidence": true,
+  "cluster_access_performed": false,
+  "application_sync_performed": false,
+  "screenshots": [
+    {
+      "file": "docs/screenshots/01-verda-instances.png",
+      "width": 1553,
+      "height": 450,
+      "original_sha256": "66513c256ff69e8ffc622ae45a3458f1ad91a3886e415f49874560dfdddb631f",
+      "published_sha256": "4d6310594e94ee97d71102b55d6aaaa963a5bc6e7db9a2792b76df619947c46e",
+      "opaque_email_masks": [
+        [
+          1221,
+          248,
+          165,
+          24
+        ],
+        [
+          1221,
+          351,
+          165,
+          24
+        ]
+      ],
+      "all_pixels_outside_masks_identical": true,
+      "visually_reviewed": true,
+      "png_chunk_types": [
+        "IHDR",
+        "sRGB",
+        "gAMA",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ],
+      "email_in_png_metadata": false
+    },
+    {
+      "file": "docs/screenshots/02-grafana-dashboard.png",
+      "width": 1760,
+      "height": 464,
+      "original_sha256": "884a337f20540a0fcb4cbbab011926f947d147071d464f93ae28917b87a0cf19",
+      "published_sha256": "884a337f20540a0fcb4cbbab011926f947d147071d464f93ae28917b87a0cf19",
+      "opaque_email_masks": [],
+      "all_pixels_outside_masks_identical": true,
+      "visually_reviewed": true,
+      "png_chunk_types": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IDAT",
+        "IDAT",
+        "IDAT",
+        "IDAT",
+        "IDAT",
+        "IEND"
+      ],
+      "email_in_png_metadata": false
+    },
+    {
+      "file": "docs/screenshots/03-argocd-demo.png",
+      "width": 1607,
+      "height": 457,
+      "original_sha256": "b4284e206287f9fedada318c265f43c8fc8e03694f7c747a8707427b47ee68b2",
+      "published_sha256": "dc558efa43d92581c80305c2309fa2495569bc537bda16114c0e6973d9dc916e",
+      "opaque_email_masks": [
+        [
+          466,
+          379,
+          165,
+          26
+        ],
+        [
+          1055,
+          386,
+          165,
+          26
+        ]
+      ],
+      "all_pixels_outside_masks_identical": true,
+      "visually_reviewed": true,
+      "png_chunk_types": [
+        "IHDR",
+        "sRGB",
+        "gAMA",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ],
+      "email_in_png_metadata": false
+    }
+  ],
+  "visual_review_findings": "No visible personal emails, passwords, tokens, coupon codes or private console output; four email regions fully opaque; resource/status evidence preserved",
+  "unchanged_grafana_original_bytes": true
+}

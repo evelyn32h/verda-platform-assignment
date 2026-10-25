@@ -24,7 +24,7 @@ that preserve approved sources were retained; node preparation was not executed.
 No workload redeployment, VM restart or application/monitoring change occurred.
 [Access closure](SSH_ACCESS.md) and [today's health evidence](evidence/delivery-health.json)
 record the outcome. [HANDOFF.md](HANDOFF.md) maps the PDF requirements and lists
-repository-link and optional screenshot actions before Monday, 26 October.
+the published repository and final submission materials for Monday, 26 October.
 The original stable history was subsequently published, and the separately
 authorized Argo CD follow-up is complete as recorded below.
 
@@ -200,8 +200,19 @@ the existing alert. Legacy scripts now refuse/skip the adopted app.
 
 [Evidence](evidence/gitops-checks.json), [health](evidence/gitops-health.json) and
 [runbook](GITOPS.md) record scope, timestamps, hashes and rollback. Automatic sync,
-pruning, UI login and rollback/uninstall drills are not claimed tested. No VM
+pruning and rollback/uninstall drills are not claimed tested. No VM
 rebuild, network reconfiguration, external notification or email was performed.
+
+## Owner acceptance and screenshot delivery
+
+The owner personally logged in to Argo CD and confirmed `demo` was Healthy and
+Synced at commit **`2bfe3c2`**. Owner-provided Verda, Grafana and Argo screenshots
+are embedded in the README. Four email regions were covered with opaque black
+rectangles; all remaining pixels were verified identical, and the Grafana image
+was unchanged. Screenshot metadata and pending release files were reviewed.
+[Screenshot evidence](evidence/screenshot-review.json) records hashes and scope.
+The captured Argo revision is retained as historical evidence. This final
+documentation/screenshot change did not access, modify or re-sync the cluster.
 
 ## With more time
 

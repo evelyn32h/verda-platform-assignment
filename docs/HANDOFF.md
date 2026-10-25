@@ -38,7 +38,7 @@ The original stays ignored; the table paraphrases its requirements.
 
 | Requirement | Completion and qualification | Evidence |
 |---|---|---|
-| Verda CPU VMs with public IPs | Two existing Ubuntu VMs, inventoried 24 October. Provisioning is external to the repo; no VM IaC/audit trail is claimed. | [Inventory/full checks](evidence/required-checks.json); cloud-console screenshot recommended |
+| Verda CPU VMs with public IPs | Two existing Ubuntu VMs, inventoried 24 October. Provisioning is external to the repo; no VM IaC/audit trail is claimed. | [Inventory/full checks](evidence/required-checks.json), [Verda screenshot](screenshots/01-verda-instances.png) |
 | Working Kubernetes | Two Ready k3s nodes reconfirmed today through restored SSH. | [Validation](VALIDATION.md), [server bootstrap](../scripts/remote/install-server.sh) |
 | Ingress controller | Traefik/ServiceLB implemented; external app still works today. | [App YAML](../gitops/demo/app.yaml), [public checks](evidence/delivery-health.json) |
 | cert-manager or TLS explanation | Explanation option complete: self-signed IP SAN certificate, verified HTTPS, expires 23 November. cert-manager is not claimed installed. | [TLS approach](../README.md#tls-approach), [certificate evidence](evidence/required-checks.json) |
@@ -59,28 +59,28 @@ The original stays ignored; the table paraphrases its requirements.
    https://github.com/evelyn32h/verda-platform-assignment. Verify the final
    submitted commit after adding any optional material; no repository login is
    needed to read the code. The original history is preserved.
-2. **Choose how to demonstrate private Grafana/Argo/management access.**
-   `localhost:3000` is a tunnel URL, not a public reviewer endpoint. The current
-   instructions assume an authorized owner key and source IP. The reader
-   ServiceAccount policy does not issue a reviewer login. Argo is also tunnel-only;
-   its HTML/version were checked, but authenticated UI login is still an owner action.
-   Do not share the owner private key, root kubeconfig or Grafana admin password in the repo. Screenshots
-   or an owner-led demonstration can supply evidence without sharing them.
+2. **Use the supplied screenshots for private UI evidence.** The owner personally
+   logged in to Argo and confirmed `demo` Healthy/Synced at `2bfe3c2`. Verda,
+   Grafana and Argo screenshots are now embedded in the README. Live private UI
+   access still requires an authorized owner key/source IP; `localhost` URLs are
+   tunnel addresses, not public reviewer endpoints. No private credential is shared.
+3. **Prepare the final submission message.** The repository, report, access
+   instructions and screenshots are ready; sending that message remains the owner task.
 
-Recommended images if providing screenshots rather than relying on instructions:
+Included screenshot evidence:
 
-| Image | What to capture | What to hide |
+| Screenshot | Evidence | Privacy review |
 |---|---|---|
-| Verda console | Both VM names/status, public IPs, CPU/RAM and useful region/IDs | Billing/credits, account email and all credentials |
-| Grafana | Six panels, recent time range, visible values and dashboard title | Session credentials, password prompts, unrelated personal/account data |
-| Argo CD (optional) | demo Application, Synced/Healthy, repository path and revision | Admin password, initial-secret output, session credentials |
-| Public app/health (optional) | Browser address, app and plain-text health display | Avoid confusing the assignment PDF rendering with an app screenshot |
-| Nodes/Prometheus rule (optional) | Two Ready nodes and the healthy production rule | Use existing lifecycle evidence; do not create another outage/test |
+| [Verda](screenshots/01-verda-instances.png) | Both named CPU VMs Running, public IPs, specifications | Two email regions masked |
+| [Grafana](screenshots/02-grafana-dashboard.png) | Six panels, two Ready nodes, two available app replicas, 20 running Pods | No email or credential found; original bytes unchanged |
+| [Argo CD](screenshots/03-argocd-demo.png) | Owner login; demo Healthy/Synced, Sync OK at 2bfe3c2 | Two author-email regions masked |
 
-No PNG/JPEG screenshot is tracked. The sole local PNG at this review is an
-ignored assignment PDF rendering. No fabricated images or missing-image links
-were added. Screenshots are recommended supplementary material, not a newly
-invented mandatory requirement.
+All three are embedded using repository-relative README paths. Only opaque
+redaction rectangles were added; all other pixels remain identical. The Argo
+revision is capture-time evidence, not a claim that a later documentation commit
+was synchronized. No application sync was performed for this screenshot update.
+Originals remain ignored under `.local/`; [review evidence](evidence/screenshot-review.json)
+records dimensions, masks, hashes and visual/metadata checks.
 
 ## Publication content and history
 
@@ -96,7 +96,9 @@ current text candidates with LF normalization and excludes its own report from
 that map to avoid a self-reference.
 
 This is a local pattern/content review, not proof against all unknown credential
-formats. Current Git blobs are text; future screenshots require visual review.
+formats. The three included PNGs were visually reviewed, email-redacted where
+needed, checked for email metadata and verified against the original pixels
+outside the redaction rectangles. Future screenshots require the same review.
 Public VM IPs, Kubernetes IDs, standard paths and author metadata are distinct
 from credentials. `docs/evidence/` contains curated JSON; `.local/`, `tmp/`, keys,
 archives and the PDF remain ignored. Stage explicitly and deliver a Git
@@ -112,6 +114,6 @@ The private localhost Grafana URL was not retested without its SSH tunnel.
 The separately authorized Argo CD/GitOps work is complete. All required features
 and four PDF bonuses have evidence; backup/restore remains notes-only. Automatic
 sync/prune and external notifications are disabled. Keep the stable platform;
-no further features are needed for the Monday submission. UI screenshots/login
-and the final submission message remain owner actions, not unattended publishing
-or credential-sharing tasks.
+no further features are needed for the Monday submission. Owner UI login and the
+three reviewed screenshots are complete. The final submission message remains
+an owner action; no email has been sent by this automation.
