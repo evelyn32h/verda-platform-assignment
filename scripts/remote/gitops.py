@@ -94,18 +94,28 @@ def verify(revision=None):
     assert not app['metadata'].get('finalizers')
     status=app['status']; operation=status.get('operationState',{})
     assert status['sync']['status']=='Synced' and status['health']['status']=='Healthy'
-    assert operation.get('phase')=='Succeeded' and operation['operation']['sync'].get('prune') is False
+    # Argo's JSON serialization omits the default false boolean (omitempty).
+    assert operation.get('phase')=='Succeeded' and operation['operation']['sync'].get('prune',False) is False
     if revision: assert status['sync']['revision']==revision
     resources=status['resources']
     assert len(resources)==7
     assert all(r.get('namespace')=='demo' and r['kind'] not in ('Secret','Namespace','Role','RoleBinding') for r in resources)
     assert get('deployment','demo','demo')['status']['availableReplicas']==2
+    guard=subprocess.run(['bash','-c','. "$1"; require_legacy_demo_access','check',str(ROOT/'scripts/remote/demo-ownership.sh')],capture_output=True,text=True,timeout=30)
+    assert guard.returncode!=0 and 'legacy apply refused' in guard.stderr
+    content=get('configmap','demo-content','demo')['data']
+    assert content['healthz']=='ok\n'
+    argo_pods=get('pods',namespace='argocd')['items']
+    argo_images=sorted({c['image'] for p in argo_pods for c in p['spec']['containers'] if '/argoproj/argocd:' in c['image']})
+    assert argo_images==['quay.io/argoproj/argocd:'+LOCK['version']]
     return {'status':'PASS','action':'verify','version':LOCK['version'],'application':'argocd/demo',
         'sync':status['sync']['status'],'health':status['health']['status'],'revision':status['sync']['revision'],
         'operation_phase':operation['phase'],'operation_started_at':operation.get('startedAt'),
         'operation_finished_at':operation.get('finishedAt'),'prune':False,'automatic_sync':False,
         'resources':[{'group':r.get('group',''),'kind':r['kind'],'namespace':r['namespace'],'name':r['name'],'sync':r.get('status')} for r in resources],
-        'conditions':status.get('conditions',[]),**preserved()}
+        'conditions':status.get('conditions',[]),'legacy_guard_refuses_apply':True,
+        'demo_content_data_sha256':hashlib.sha256(json.dumps(content,sort_keys=True,separators=(',',':')).encode()).hexdigest(),
+        'observed_argocd_images':argo_images,**preserved()}
 
 def sync(revision):
     assert revision and re.fullmatch('[0-9a-f]{40}',revision),'Require a pushed full commit SHA'

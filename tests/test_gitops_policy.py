@@ -5,7 +5,7 @@ import yaml
 
 ROOT=Path(__file__).resolve().parents[1]
 class GitOpsPolicyTests(unittest.TestCase):
-    def test_app_behavior_is_unchanged_and_no_platform_objects_are_adopted(self):
+    def test_workload_and_probes_are_unchanged_and_no_platform_objects_are_adopted(self):
         old=list(yaml.safe_load_all((ROOT/'manifests/app.yaml').read_text(encoding='utf-8')))
         old=[o for o in old if o['kind']!='Namespace']
         new=list(yaml.safe_load_all((ROOT/'gitops/demo/app.yaml').read_text(encoding='utf-8')))
@@ -16,6 +16,9 @@ class GitOpsPolicyTests(unittest.TestCase):
             safety=actual['metadata']['annotations'].pop('argocd.argoproj.io/sync-options')
             self.assertEqual(set(safety.split(',')),{'Prune=false','Delete=false'})
             if not actual['metadata']['annotations']: actual['metadata'].pop('annotations')
+            if actual['kind']=='ConfigMap' and actual['metadata']['name']=='demo-content':
+                self.assertIn('The platform is running.',actual['data']['index.html'])
+                actual['data'].pop('index.html'); expected['data'].pop('index.html')
             self.assertEqual(actual,expected)
 
     def test_manual_sync_and_namespace_preservation(self):

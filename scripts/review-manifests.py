@@ -13,10 +13,14 @@ spec = importlib.util.spec_from_file_location('project', ROOT/'scripts/platform.
 project = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(project)
 files = sorted((ROOT/'manifests').glob('*.yaml'))
+gitops_app=ROOT/'gitops/demo/app.yaml'
+if gitops_app.exists(): files.append(gitops_app)
 expected = []
 for file in files:
     for obj in yaml.safe_load_all(file.read_text(encoding='utf-8')):
         if obj:
+            if gitops_app.exists() and file.name=='app.yaml' and file.parent.name=='manifests' and obj['kind']!='Namespace':
+                continue  # Legacy app copy is a recovery reference after adoption.
             assert obj['kind'] in ('Namespace','ConfigMap','Deployment','Service','Ingress','TLSStore','HelmChart','ServiceAccount','Role','RoleBinding','PrometheusRule')
             expected.append({'file': file.relative_to(ROOT).as_posix(), 'object': obj})
 code = 'expected=json.loads(' + repr(json.dumps(expected)) + ')\n'
