@@ -5,6 +5,7 @@ chart_version=${2:?monitoring chart version}
 test -f /etc/verda-platform/managed
 cd /opt/verda-platform
 k() { k3s kubectl "$@"; }
+source scripts/remote/demo-ownership.sh
 k wait nodes --all --for=condition=Ready --timeout=300s
 test "$(k get nodes --no-headers | wc -l)" -eq 2
 for component in traefik metrics-server; do
@@ -33,7 +34,11 @@ if ! k -n monitoring get secret grafana-admin >/dev/null 2>&1; then
   k -n monitoring create secret generic grafana-admin --from-literal=admin-user=admin \
     --from-file=admin-password=/etc/verda-platform/grafana-password
 fi
-k apply --server-side -f manifests/app.yaml
+if demo_is_gitops_managed; then
+  echo 'Demo is managed by Argo CD; skipping the legacy application manifest.'
+else
+  k apply --server-side -f manifests/app.yaml
+fi
 python3 - "$chart_version" <<'PY'
 from pathlib import Path
 import sys

@@ -185,9 +185,15 @@ def main():
         elif args.action == "verify":
             verify(remotes)
         elif args.action == "app":
+            remotes["server"].run(
+                "set -eu; if test -f /etc/verda-platform/demo-gitops.json || "
+                "k3s kubectl -n argocd get applications.argoproj.io demo -o name >/dev/null 2>&1; "
+                "then echo 'Demo is managed by Argo CD; use gitops/demo/app.yaml and sync.' >&2; exit 1; fi",
+                "check-demo-ownership")
             remotes["server"].upload()
             remotes["server"].run(
-                "set -eu; k3s kubectl apply --server-side -f /opt/verda-platform/manifests/app.yaml; "
+                "set -eu; . /opt/verda-platform/scripts/remote/demo-ownership.sh; require_legacy_demo_access; "
+                "k3s kubectl apply --server-side -f /opt/verda-platform/manifests/app.yaml; "
                 "k3s kubectl -n demo rollout status deployment/demo --timeout=300s",
                 "deploy-app", timeout=360)
         elif args.action == "firewall":

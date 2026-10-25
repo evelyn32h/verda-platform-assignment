@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo
+  namespace: argocd
+  # No deletion finalizer: removing this Application must not cascade to the app.
+spec:
+  project: demo-only
+  source:
+    repoURL: https://github.com/evelyn32h/verda-platform-assignment.git
+    targetRevision: main
+    path: gitops/demo
+    directory:
+      include: app.yaml
+      recurse: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo
+  syncPolicy:
+    # No automated policy. Each demonstration sync is explicitly requested.
+    syncOptions:
+      - ServerSideApply=true
+      - FailOnSharedResource=true
+      - Prune=false
+      - Delete=false

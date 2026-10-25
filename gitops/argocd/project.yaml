@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: demo-only
+  namespace: argocd
+spec:
+  description: Only the existing demo application; platform resources stay outside GitOps
+  sourceRepos:
+    - https://github.com/evelyn32h/verda-platform-assignment.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: demo
+  clusterResourceWhitelist: []
+  clusterResourceBlacklist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: ''
+      kind: ConfigMap
+    - group: ''
+      kind: Service
+    - group: apps
+      kind: Deployment
+    - group: networking.k8s.io
+      kind: Ingress
+    - group: traefik.io
+      kind: TLSStore
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: Secret
+    - group: rbac.authorization.k8s.io
+      kind: '*'
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+data:
+  application.resourceTrackingMethod: annotation
+  timeout.reconciliation: 60s
+  timeout.reconciliation.jitter: 15s

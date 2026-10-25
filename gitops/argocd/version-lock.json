@@ -1,0 +1,9 @@
+{
+  "version": "v3.5.6",
+  "install_url": "https://raw.githubusercontent.com/argoproj/argo-cd/v3.5.6/manifests/install.yaml",
+  "install_sha256": "846c644bc81ce5557dd9048757a9c7353378f25c5eb811c77d32a9e907823599",
+  "repository": "https://github.com/evelyn32h/verda-platform-assignment.git",
+  "branch": "main",
+  "application_path": "gitops/demo",
+  "application_name": "demo"
+}
