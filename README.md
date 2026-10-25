@@ -8,7 +8,7 @@ application manifests, monitoring configuration, and operator notes.
 on both VMs from the retained management Wi-Fi. Both nodes are Ready, the app has
 two available replicas, all 15 Prometheus targets are healthy, and Grafana plus
 six dashboard source queries return data. HTTP/HTTPS index and plain-text health
-checks pass. All 15 declared manifest objects match the live configuration.
+checks pass. All 15 checked application/platform manifest objects match live configuration.
 The cancelled new-IP grant was withdrawn on both hosts; no rollback timer remains
 active for that change. See the [delivery checklist and owner actions](docs/HANDOFF.md),
 [validation record](docs/VALIDATION.md) and [summary report](docs/REPORT.md).
@@ -21,7 +21,8 @@ approach, Prometheus/Grafana with a useful dashboard, and access/operations note
 The bonus [basic RBAC](docs/RBAC.md) is deployed and verified for the demo
 namespace. A [simple application alert](docs/ALERTS.md) is loaded and its
 evaluation lifecycle verified; external notification delivery is not configured.
-GitOps/Argo CD remains excluded.
+The [Argo CD / GitOps bonus](docs/GITOPS.md) is deployed and verified for the
+existing app, using manual sync with pruning disabled.
 The [backup/recovery notes](docs/BACKUP_RESTORE.md) bonus is documented against
 the actual SQLite/local-path layout; backup and restore execution remain untested.
 
@@ -38,6 +39,9 @@ flowchart LR
     Worker -->|TLS TCP 6443 / peer only| Server
     Server --> Monitoring[Prometheus / Grafana / local-path PVCs]
     Operator -->|SSH tunnel / loopback port-forward| Monitoring
+    GitHub[Public Git repository] --> Argo[Argo CD / manual sync]
+    Argo -->|gitops/demo only| App
+    Operator -->|SSH tunnel only| Argo
 ```
 
 Both VMs currently have public addresses; this design does not assume a private
@@ -191,6 +195,41 @@ The custom six-panel dashboard covers ready nodes, available app replicas,
 running pods, node CPU, memory, and root filesystem usage. The chart disables
 unavailable k3s control-plane scrape targets to avoid presenting expected missing
 endpoints as monitoring failures.
+
+## Argo CD and application GitOps
+
+Repository: **https://github.com/evelyn32h/verda-platform-assignment** (`main`).
+Argo CD **v3.5.6** manages only the seven objects in `gitops/demo/app.yaml`.
+Namespace, Secrets, monitoring and RBAC stay outside this Application; TLS uses
+the existing management workflow. The first manual adoption and the HTML-only
+commit `9998ec8` both reached **Synced / Healthy**, with no app/monitoring Pod
+replacement or restart. Public HTTP/HTTPS serves the Git-delivered page.
+
+Automatic sync, self-heal and prune remain disabled. Each app resource also has
+`Prune=false,Delete=false`; the Application has no cascading deletion finalizer.
+Legacy `platform.py app` refuses an adopted app, and the workload script skips its
+old application manifest. Use the GitOps source for changes; the old app YAML is
+a recovery reference. Routine checks and a future explicit sync are:
+
+```powershell
+python scripts/gitops.py verify
+python scripts/review-github.py
+# After an intentional Git commit/push; this changes the app through Argo:
+python scripts/gitops.py sync --revision (git rev-parse HEAD)
+```
+
+Argo's UI has no public Ingress or external Service. Leave this SSH tunnel open:
+
+```powershell
+ssh -i "$env:USERPROFILE\.ssh\verda_assignment" -o ExitOnForwardFailure=yes -L 127.0.0.1:8080:127.0.0.1:18443 root@95.133.252.141 "k3s kubectl -n argocd port-forward --address=127.0.0.1 svc/argocd-server 18443:443"
+```
+
+Open **https://localhost:8080** (Argo's default self-signed UI certificate warns).
+User `admin` can retrieve the initial password in the owner's own terminal as
+described in [GitOps access, operation and rollback](docs/GITOPS.md). The automated
+check fetched UI HTML/version through a temporary SSH tunnel and cleaned it;
+authenticated UI login was not performed. No administrator credential is in Git.
+See [GitOps evidence](docs/evidence/gitops-checks.json).
 
 ## Basic RBAC
 

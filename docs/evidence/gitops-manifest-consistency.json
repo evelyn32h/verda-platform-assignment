@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-25T16:36:14.846939+00:00",
+  "method": "kubectl GET only; recursive declared-field subset comparison; no Secret fetch",
+  "objects": [
+    {
+      "source": "manifests/alerts.yaml",
+      "kind": "PrometheusRule",
+      "namespace": "monitoring",
+      "name": "demo-availability",
+      "declared_fields_match": true
+    },
+    {
+      "source": "manifests/app.yaml",
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "demo",
+      "declared_fields_match": true
+    },
+    {
+      "source": "manifests/dashboard.yaml",
+      "kind": "ConfigMap",
+      "namespace": "monitoring",
+      "name": "verda-platform-dashboard",
+      "declared_fields_match": true
+    },
+    {
+      "source": "manifests/monitoring.yaml",
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "monitoring",
+      "declared_fields_match": true
+    },
+    {
+      "source": "manifests/monitoring.yaml",
+      "kind": "HelmChart",
+      "namespace": "kube-system",
+      "name": "monitoring",
+      "declared_fields_match": true
+    },
+    {
+      "source": "manifests/rbac.yaml",
+      "kind": "ServiceAccount",
+      "namespace": "demo",
+      "name": "demo-reader",
+      "declared_fields_match": true
+    },
+    {
+      "source": "manifests/rbac.yaml",
+      "kind": "Role",
+      "namespace": "demo",
+      "name": "demo-reader",
+      "declared_fields_match": true
+    },
+    {
+      "source": "manifests/rbac.yaml",
+      "kind": "RoleBinding",
+      "namespace": "demo",
+      "name": "demo-reader",
+      "declared_fields_match": true
+    },
+    {
+      "source": "gitops/demo/app.yaml",
+      "kind": "ConfigMap",
+      "namespace": "demo",
+      "name": "demo-content",
+      "declared_fields_match": true
+    },
+    {
+      "source": "gitops/demo/app.yaml",
+      "kind": "ConfigMap",
+      "namespace": "demo",
+      "name": "demo-nginx",
+      "declared_fields_match": true
+    },
+    {
+      "source": "gitops/demo/app.yaml",
+      "kind": "Deployment",
+      "namespace": "demo",
+      "name": "demo",
+      "declared_fields_match": true
+    },
+    {
+      "source": "gitops/demo/app.yaml",
+      "kind": "Service",
+      "namespace": "demo",
+      "name": "demo",
+      "declared_fields_match": true
+    },
+    {
+      "source": "gitops/demo/app.yaml",
+      "kind": "Ingress",
+      "namespace": "demo",
+      "name": "demo-http",
+      "declared_fields_match": true
+    },
+    {
+      "source": "gitops/demo/app.yaml",
+      "kind": "Ingress",
+      "namespace": "demo",
+      "name": "demo-https",
+      "declared_fields_match": true
+    },
+    {
+      "source": "gitops/demo/app.yaml",
+      "kind": "TLSStore",
+      "namespace": "demo",
+      "name": "default",
+      "declared_fields_match": true
+    }
+  ],
+  "api_normalizations": [
+    {
+      "field": "$.spec.timeout",
+      "declared": "900s",
+      "live": "15m0s",
+      "equivalent_seconds": 900
+    }
+  ],
+  "source_sha256": {
+    "manifests/alerts.yaml": "fa9ee505261b7ef9aa136992202d2498287c4671edc9e05fc06a8a71a0e95bbf",
+    "manifests/app.yaml": "898048d5ebeff06db0c66d0db5ab91927b4ed4e2a23bd2b2e76f94d97491b42d",
+    "manifests/dashboard.yaml": "306526b2c74a4c563d950b710845a483e46f28fc3de858c0c543a5a3852bc757",
+    "manifests/monitoring.yaml": "92cd156d962ee57d763df7c5e702281791d4b4866b86b6b5534dc0c1d0f8d019",
+    "manifests/rbac.yaml": "59f523ddb77fa624902c73d0d5c7e2f4546c69e2bdee760b6d95c803d11eac7d",
+    "gitops/demo/app.yaml": "c7c5ad9de4479792a47eb9951212e16eb7fbc15ba1b610c4cc4b75e84f2c9b88"
+  }
+}

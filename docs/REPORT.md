@@ -25,13 +25,15 @@ No workload redeployment, VM restart or application/monitoring change occurred.
 [Access closure](SSH_ACCESS.md) and [today's health evidence](evidence/delivery-health.json)
 record the outcome. [HANDOFF.md](HANDOFF.md) maps the PDF requirements and lists
 repository-link and optional screenshot actions before Monday, 26 October.
-The local repository has not been published.
+The original stable history was subsequently published, and the separately
+authorized Argo CD follow-up is complete as recorded below.
 
 Deployment scripts, workload manifests, monitoring configuration, a custom
 dashboard and operator documentation are included in this Git repository.
 The basic namespace RBAC and simple application alert bonuses are deployed and
-verified. External notification delivery is not configured. GitOps/Argo CD remains
-deferred.
+verified. External notification delivery is not configured. The Argo CD/GitOps
+bonus is also deployed and verified; all four PDF bonuses now have evidence,
+with backup/restore limited to documentation.
 The backup/recovery **notes** bonus is now complete; its procedures have not been
 executed or validated through a restore drill.
 
@@ -162,8 +164,44 @@ rule details, test inputs, cleanup and service health. All app/monitoring Pod
 identities and restart counts stayed unchanged; external HTTP/HTTPS, Grafana and
 all 15 scrape targets were healthy. **No external channel is configured, no
 notification was sent, and notification delivery is untested.** See
-[ALERTS.md](ALERTS.md) for the response procedure and reproducible test. Argo CD
-was not started.
+[ALERTS.md](ALERTS.md) for the response procedure and reproducible test. That
+alert-only change did not install Argo CD; the later GitOps follow-up is below.
+
+## Argo CD / GitOps bonus
+
+The public [repository](https://github.com/evelyn32h/verda-platform-assignment)
+preserves `b3f028c` and the original history. All reachable history and release
+files were checked before publication; no assignment attachment, recruitment
+email/coupon, private key, credential-bearing kubeconfig or raw private log was
+found. GitHub file blob IDs and commits matched local Git after pushing.
+
+Argo CD v3.5.6 was installed from a SHA-256-locked official manifest. Its eight
+Services are ClusterIP, with no public UI ingress/host port. UI HTML/version were
+verified through SSH and the temporary forward was cleaned. Existing host SSH
+rules and persistent policy were rechecked identical. AppProject restricts the
+repository, `demo` destination and five resource kinds. The standard non-HA
+controller itself retains cluster-level RBAC; namespace-only control-plane
+privileges are not claimed.
+
+Only seven existing app objects were adopted from `gitops/demo`; Namespace,
+Secrets, monitoring and RBAC remain outside it. TLS stayed unchanged. The first
+manual sync at `4dda8de` reached Synced/Healthy. The initial verification script
+incorrectly required an explicit `prune:false` field; Argo omitted that default.
+Reading the real operation confirmed success and pruning disabled, then the
+validator was corrected and passed without repeating deployment.
+
+The HTML-only commit `9998ec8` produced OutOfSync/Healthy before manual sync and
+Synced/Healthy afterwards. The live ConfigMap hash matched that Git revision;
+both Pods and public HTTP/HTTPS then served the new marker. Health remained
+200/text/plain with `ok\n`. Original app/monitoring Pod UIDs and restarts were
+unchanged. The final read-only review passed for 20 ready running Pods, two Ready
+nodes, 15 scrape targets, both monitoring PVCs, Grafana, six source queries and
+the existing alert. Legacy scripts now refuse/skip the adopted app.
+
+[Evidence](evidence/gitops-checks.json), [health](evidence/gitops-health.json) and
+[runbook](GITOPS.md) record scope, timestamps, hashes and rollback. Automatic sync,
+pruning, UI login and rollback/uninstall drills are not claimed tested. No VM
+rebuild, network reconfiguration, external notification or email was performed.
 
 ## With more time
 

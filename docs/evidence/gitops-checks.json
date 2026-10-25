@@ -1,0 +1,351 @@
+{
+  "status": "PASS",
+  "completed_at": "2026-10-25T16:41:15.997118+00:00",
+  "stable_baseline": "b3f028c68a24ccfa8fe4cd0f6d200c1a33de11fd",
+  "repository": "https://github.com/evelyn32h/verda-platform-assignment",
+  "install": {
+    "status": "PASS",
+    "action": "install",
+    "version": "v3.5.6",
+    "install_sha256": "846c644bc81ce5557dd9048757a9c7353378f25c5eb811c77d32a9e907823599",
+    "services": [
+      {
+        "name": "argocd-applicationset-controller",
+        "type": "ClusterIP"
+      },
+      {
+        "name": "argocd-dex-server",
+        "type": "ClusterIP"
+      },
+      {
+        "name": "argocd-metrics",
+        "type": "ClusterIP"
+      },
+      {
+        "name": "argocd-notifications-controller-metrics",
+        "type": "ClusterIP"
+      },
+      {
+        "name": "argocd-redis",
+        "type": "ClusterIP"
+      },
+      {
+        "name": "argocd-repo-server",
+        "type": "ClusterIP"
+      },
+      {
+        "name": "argocd-server",
+        "type": "ClusterIP"
+      },
+      {
+        "name": "argocd-server-metrics",
+        "type": "ClusterIP"
+      }
+    ],
+    "public_ingress_created": false,
+    "legacy_guard_scripts_synchronized": true,
+    "app_and_monitoring_pod_uids_and_restarts_unchanged": true,
+    "demo_namespace_uid_unchanged": true,
+    "checked_at": "2026-10-25T16:28:26.533179+00:00",
+    "operator_source_sha256": {
+      "scripts/gitops.py": "e9a169417c98ba6ad55474346de81a22d430f9460827592214e96fbce3df9ed4",
+      "scripts/remote/gitops.py": "fad43f0b221548db924e18b7c849a93b57398c32358a4e5f055b1b9d15fdabfe"
+    }
+  },
+  "first_manual_sync": {
+    "status": "PASS",
+    "action": "verify",
+    "version": "v3.5.6",
+    "application": "argocd/demo",
+    "sync": "Synced",
+    "health": "Healthy",
+    "revision": "4dda8de56108be08236288269789b4eae8b3f3a7",
+    "operation_phase": "Succeeded",
+    "operation_started_at": "2026-10-25T16:29:23Z",
+    "operation_finished_at": "2026-10-25T16:29:24Z",
+    "prune": false,
+    "automatic_sync": false,
+    "resources": [
+      {
+        "group": "",
+        "kind": "ConfigMap",
+        "namespace": "demo",
+        "name": "demo-content",
+        "sync": "Synced"
+      },
+      {
+        "group": "",
+        "kind": "ConfigMap",
+        "namespace": "demo",
+        "name": "demo-nginx",
+        "sync": "Synced"
+      },
+      {
+        "group": "",
+        "kind": "Service",
+        "namespace": "demo",
+        "name": "demo",
+        "sync": "Synced"
+      },
+      {
+        "group": "apps",
+        "kind": "Deployment",
+        "namespace": "demo",
+        "name": "demo",
+        "sync": "Synced"
+      },
+      {
+        "group": "networking.k8s.io",
+        "kind": "Ingress",
+        "namespace": "demo",
+        "name": "demo-http",
+        "sync": "Synced"
+      },
+      {
+        "group": "networking.k8s.io",
+        "kind": "Ingress",
+        "namespace": "demo",
+        "name": "demo-https",
+        "sync": "Synced"
+      },
+      {
+        "group": "traefik.io",
+        "kind": "TLSStore",
+        "namespace": "demo",
+        "name": "default",
+        "sync": "Synced"
+      }
+    ],
+    "conditions": [],
+    "legacy_guard_refuses_apply": true,
+    "demo_content_data_sha256": "2b193cbe09bf32ac3c155e37c78210e44b76ef19579d0a682ccc705630a5f31a",
+    "observed_argocd_images": [
+      "quay.io/argoproj/argocd:v3.5.6"
+    ],
+    "app_and_monitoring_pod_uids_and_restarts_unchanged": true,
+    "demo_namespace_uid_unchanged": true,
+    "checked_at": "2026-10-25T16:32:41.004247+00:00",
+    "live_content_matches_synced_git_commit": true,
+    "operator_source_sha256": {
+      "scripts/gitops.py": "f04a09752fbdee3c878169acd87fcefd841c3553f508d87f4f9119d2e1474b14",
+      "scripts/remote/gitops.py": "f2276aa427dc6dc64d0cea8ba2fedc8e6c3b3873fc9926359a49b2c2dbe5dcdf"
+    }
+  },
+  "before_change_sync": {
+    "status": "PASS",
+    "checked_at": "2026-10-25T16:35:13.701719+00:00",
+    "git_revision": "9998ec851101d8308f32fd120ed95109ed23ef6d",
+    "sync": "OutOfSync",
+    "health": "Healthy",
+    "automatic_sync": false,
+    "live_content_still_previous_revision": true,
+    "live_content_sha256": "2b193cbe09bf32ac3c155e37c78210e44b76ef19579d0a682ccc705630a5f31a"
+  },
+  "change_manual_sync": {
+    "status": "PASS",
+    "action": "manual-sync",
+    "version": "v3.5.6",
+    "application": "argocd/demo",
+    "sync": "Synced",
+    "health": "Healthy",
+    "revision": "9998ec851101d8308f32fd120ed95109ed23ef6d",
+    "operation_phase": "Succeeded",
+    "operation_started_at": "2026-10-25T16:35:18Z",
+    "operation_finished_at": "2026-10-25T16:35:18Z",
+    "prune": false,
+    "automatic_sync": false,
+    "resources": [
+      {
+        "group": "",
+        "kind": "ConfigMap",
+        "namespace": "demo",
+        "name": "demo-content",
+        "sync": "Synced"
+      },
+      {
+        "group": "",
+        "kind": "ConfigMap",
+        "namespace": "demo",
+        "name": "demo-nginx",
+        "sync": "Synced"
+      },
+      {
+        "group": "",
+        "kind": "Service",
+        "namespace": "demo",
+        "name": "demo",
+        "sync": "Synced"
+      },
+      {
+        "group": "apps",
+        "kind": "Deployment",
+        "namespace": "demo",
+        "name": "demo",
+        "sync": "Synced"
+      },
+      {
+        "group": "networking.k8s.io",
+        "kind": "Ingress",
+        "namespace": "demo",
+        "name": "demo-http",
+        "sync": "Synced"
+      },
+      {
+        "group": "networking.k8s.io",
+        "kind": "Ingress",
+        "namespace": "demo",
+        "name": "demo-https",
+        "sync": "Synced"
+      },
+      {
+        "group": "traefik.io",
+        "kind": "TLSStore",
+        "namespace": "demo",
+        "name": "default",
+        "sync": "Synced"
+      }
+    ],
+    "conditions": [],
+    "legacy_guard_refuses_apply": true,
+    "demo_content_data_sha256": "e14bf5c055e67a92d0a33c3de691fd11d30f06cba0da05f07a6a176cc0d6bc3b",
+    "observed_argocd_images": [
+      "quay.io/argoproj/argocd:v3.5.6"
+    ],
+    "app_and_monitoring_pod_uids_and_restarts_unchanged": true,
+    "demo_namespace_uid_unchanged": true,
+    "checked_at": "2026-10-25T16:35:23.806281+00:00",
+    "live_content_matches_synced_git_commit": true,
+    "operator_source_sha256": {
+      "scripts/gitops.py": "f04a09752fbdee3c878169acd87fcefd841c3553f508d87f4f9119d2e1474b14",
+      "scripts/remote/gitops.py": "f2276aa427dc6dc64d0cea8ba2fedc8e6c3b3873fc9926359a49b2c2dbe5dcdf"
+    }
+  },
+  "public_change": {
+    "status": "PASS",
+    "checked_at": "2026-10-25T16:36:29.011858+00:00",
+    "git_revision": "9998ec851101d8308f32fd120ed95109ed23ef6d",
+    "pods": [
+      {
+        "pod": "demo-55ffd8f95b-llf2l",
+        "gitops_marker_present": true,
+        "html_sha256": "b072ad5fb303a99dfdc8fdf9c8be0a642e93f8f644ccfdca98b72151b78e3c6f"
+      },
+      {
+        "pod": "demo-55ffd8f95b-q246w",
+        "gitops_marker_present": true,
+        "html_sha256": "b072ad5fb303a99dfdc8fdf9c8be0a642e93f8f644ccfdca98b72151b78e3c6f"
+      }
+    ],
+    "external": [
+      {
+        "url": "http://95.133.252.141/",
+        "http_status": 200,
+        "gitops_marker_present": true,
+        "content_type": "text/html"
+      },
+      {
+        "url": "http://95.133.252.141/healthz",
+        "http_status": 200,
+        "content_type": "text/plain",
+        "health_body_unchanged": true
+      },
+      {
+        "url": "https://95.133.252.141/",
+        "http_status": 200,
+        "gitops_marker_present": true,
+        "content_type": "text/html"
+      },
+      {
+        "url": "https://95.133.252.141/healthz",
+        "http_status": 200,
+        "content_type": "text/plain",
+        "health_body_unchanged": true
+      }
+    ],
+    "method": "GET-only Pod HTTP content and public HTTP/HTTPS; HTTPS validates the unchanged app certificate"
+  },
+  "ui_tunnel": {
+    "status": "PASS",
+    "checked_at": "2026-10-25T16:33:33.549274+00:00",
+    "access": "SSH tunnel -> server loopback-only kubectl port-forward -> ClusterIP service",
+    "ui_http_status": 200,
+    "reported_version": "v3.5.6",
+    "login_performed": false,
+    "secret_read": false,
+    "self_signed_ui_cert_accepted_only_on_loopback_tunnel": true,
+    "temporary_forward_cleaned": true
+  },
+  "boundaries": {
+    "status": "PASS",
+    "checked_at": "2026-10-25T16:38:02.346768+00:00",
+    "nodes": {
+      "server": {
+        "ssh_source": "81.226.0.124",
+        "original_input_rules_identical": true,
+        "original_persistent_policy_identical": true,
+        "original_registry_state_identical": true,
+        "cancelled_access_timer_inactive": true
+      },
+      "worker": {
+        "ssh_source": "81.226.0.124",
+        "original_input_rules_identical": true,
+        "original_persistent_policy_identical": true,
+        "original_registry_state_identical": true,
+        "cancelled_access_timer_inactive": true
+      }
+    },
+    "argocd_boundary": {
+      "project_source_destination_and_type_restrictions_verified": true,
+      "only_demo_application_exists": true,
+      "all_argocd_services_clusterip": true,
+      "argocd_ingresses": 0,
+      "host_network_or_host_ports": false
+    },
+    "external_ui_port_probes": [
+      {
+        "host": "95.133.252.141",
+        "port": 8080,
+        "externally_reachable": false
+      },
+      {
+        "host": "95.133.252.141",
+        "port": 8443,
+        "externally_reachable": false
+      },
+      {
+        "host": "95.133.252.141",
+        "port": 18443,
+        "externally_reachable": false
+      },
+      {
+        "host": "95.133.254.68",
+        "port": 8080,
+        "externally_reachable": false
+      },
+      {
+        "host": "95.133.254.68",
+        "port": 8443,
+        "externally_reachable": false
+      },
+      {
+        "host": "95.133.254.68",
+        "port": 18443,
+        "externally_reachable": false
+      }
+    ],
+    "limitations": "AppProject restricts this Application; standard Argo controller still has cluster-level install RBAC"
+  },
+  "resolved_verifier_issue": {
+    "initial_verifier_failed": true,
+    "cause": "Argo API omits the default false prune boolean; explicit Prune=false sync option remained present",
+    "sync_itself_succeeded": true,
+    "corrected_read_only_verification_passed": true
+  },
+  "limits": [
+    "Manual sync only; automatic sync/self-healing/pruning not enabled or tested.",
+    "UI HTML/version verified through SSH; authenticated UI login not performed.",
+    "Rollback/uninstall procedure documented but not executed.",
+    "Non-HA standard Argo installation has cluster-level controller permissions; AppProject constrains this app.",
+    "No external notifications, Git webhooks, HA, credential rotation or backup/restore drill configured or claimed."
+  ]
+}

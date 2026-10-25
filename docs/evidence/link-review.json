@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-25T16:03:10.565065+00:00",
+  "checked_at": "2026-10-25T16:44:35.324065+00:00",
   "method": "HTTP HEAD, GET fallback; no notification or submission actions",
   "results": [
     {
@@ -17,6 +17,24 @@
     {
       "url": "https://95.133.252.141/healthz",
       "status": "COVERED_BY_PUBLIC_HEALTH_CHECK"
+    },
+    {
+      "url": "https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/"
+    },
+    {
+      "url": "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/"
+    },
+    {
+      "url": "https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/"
     },
     {
       "url": "https://docs.k3s.io/add-ons/helm",
@@ -47,6 +65,18 @@
       "status": "PASS",
       "http_status": 200,
       "final_url": "https://docs.k3s.io/networking/basic-network-options"
+    },
+    {
+      "url": "https://github.com/argoproj/argo-cd/releases/tag/v3.5.6",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://github.com/argoproj/argo-cd/releases/tag/v3.5.6"
+    },
+    {
+      "url": "https://github.com/evelyn32h/verda-platform-assignment",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://github.com/evelyn32h/verda-platform-assignment"
     },
     {
       "url": "https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack",
@@ -85,6 +115,10 @@
       "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement"
     },
     {
+      "url": "https://localhost:8080",
+      "status": "TUNNEL_REQUIRED_NOT_CHECKED"
+    },
+    {
       "url": "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/",
       "status": "PASS",
       "http_status": 200,
@@ -105,7 +139,11 @@
   ],
   "local_markdown_links": {
     "status": "PASS",
-    "links_checked": 81,
+    "links_checked": 101,
     "errors": []
+  },
+  "separate_argo_ui_tunnel_check": {
+    "evidence": "gitops-checks.json",
+    "method": "UI HTML/version verified separately at loopback 18443; documented local 8080 reaches the same ClusterIP service"
   }
 }

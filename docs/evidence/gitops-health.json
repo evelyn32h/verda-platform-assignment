@@ -1,0 +1,450 @@
+{
+  "checked_at": "2026-10-25T16:36:16.264533+00:00",
+  "nodes": [
+    {
+      "name": "verda-k3s-server",
+      "ready": true,
+      "kubelet": "v1.35.9+k3s1"
+    },
+    {
+      "name": "verda-k3s-worker",
+      "ready": true,
+      "kubelet": "v1.35.9+k3s1"
+    }
+  ],
+  "running_pods": [
+    {
+      "namespace": "argocd",
+      "name": "argocd-application-controller-0",
+      "uid": "2d5a8ceb-acac-474e-8472-398595ecad43",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "argocd",
+      "name": "argocd-applicationset-controller-69899886dd-hzpl2",
+      "uid": "99aa9dff-5daf-4059-a867-aad903507c84",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "argocd",
+      "name": "argocd-dex-server-6cc4f575d-zwxcc",
+      "uid": "2b7f36bf-7e24-4cbb-b31b-5bf4c8ac40b0",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "argocd",
+      "name": "argocd-notifications-controller-6c5dd596fc-lhfrs",
+      "uid": "bfbbf9d7-ca19-438e-a3cc-6f516449197f",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "argocd",
+      "name": "argocd-redis-7d8cc84c7c-xdw9x",
+      "uid": "82a6f758-e2f4-4110-9128-ac32c0a9535e",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "argocd",
+      "name": "argocd-repo-server-686495cdcc-xmwm8",
+      "uid": "20b3a859-4c59-4d4e-a27b-2fa48407c387",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "argocd",
+      "name": "argocd-server-5f8b7c7f87-tb7r9",
+      "uid": "51ea2331-05c5-468a-9094-44552c5ed78e",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "demo",
+      "name": "demo-55ffd8f95b-llf2l",
+      "uid": "9b10b451-082d-423f-a03a-108d7eb95394",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "demo",
+      "name": "demo-55ffd8f95b-q246w",
+      "uid": "7028c9f6-3ae5-450e-ac1e-77c9b628de46",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "kube-system",
+      "name": "coredns-b644fd95b-8x6h9",
+      "uid": "16b2af7b-bc98-4950-86a3-6ed2fdada98d",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "kube-system",
+      "name": "local-path-provisioner-d9d8769b6-jm24q",
+      "uid": "bc61802f-97b4-48dd-a2ae-0cb49c9b3940",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "kube-system",
+      "name": "metrics-server-7f4b6d9bd7-pqwlg",
+      "uid": "03e4b98c-0590-4a98-84be-27270cd169d8",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "kube-system",
+      "name": "svclb-traefik-43f80723-5zg8t",
+      "uid": "720ffd43-2839-461e-9ec5-a9d9a8aae1f6",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "kube-system",
+      "name": "traefik-5869c87968-dxmp6",
+      "uid": "e4327e84-9ac9-4d4c-ad9a-f76416ee69a5",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "monitoring",
+      "name": "monitoring-grafana-b58d6d649-b4ngr",
+      "uid": "600bc72b-8585-4154-94cf-c802333e87e8",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "monitoring",
+      "name": "monitoring-kube-state-metrics-7c9c8f4687-c6b56",
+      "uid": "fee60654-228a-437d-96af-7efe126f2e56",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "monitoring",
+      "name": "monitoring-operator-79c467758c-kvl4g",
+      "uid": "7498805c-f8bb-476a-8cc8-dd311f90b6da",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "monitoring",
+      "name": "monitoring-prometheus-node-exporter-rpsw4",
+      "uid": "5cd55a5a-886a-4033-9030-7e2d26be005f",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "monitoring",
+      "name": "monitoring-prometheus-node-exporter-w7n5v",
+      "uid": "b1242bdb-ed2d-4a60-b1e4-dc2422f68581",
+      "ready": true,
+      "restarts": 0
+    },
+    {
+      "namespace": "monitoring",
+      "name": "prometheus-monitoring-prometheus-0",
+      "uid": "0d74a5f6-f2ef-437c-b81e-2fd73640ec22",
+      "ready": true,
+      "restarts": 0
+    }
+  ],
+  "available_app_replicas": 2,
+  "app_spread_nodes": [
+    "verda-k3s-server",
+    "verda-k3s-worker"
+  ],
+  "metrics_api_available": true,
+  "node_metrics": "NAME               CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   \nverda-k3s-server   73m          1%       2295Mi          14%         \nverda-k3s-worker   14m          0%       674Mi           4%          \n",
+  "monitoring_services_private": true,
+  "monitoring_pvcs": [
+    {
+      "name": "monitoring-grafana",
+      "phase": "Bound",
+      "capacity": {
+        "storage": "2Gi"
+      }
+    },
+    {
+      "name": "prometheus-monitoring-prometheus-db-prometheus-monitoring-prometheus-0",
+      "phase": "Bound",
+      "capacity": {
+        "storage": "10Gi"
+      }
+    }
+  ],
+  "prometheus_targets": {
+    "healthy": 15,
+    "down": 0
+  },
+  "grafana_health": {
+    "database": "ok",
+    "version": "13.2.1",
+    "commit": "56cd3e9288d8255fecebe5d05b48d191f50674b5"
+  },
+  "dashboard_definition_panels": 6,
+  "dashboard_source_queries": [
+    {
+      "title": "Ready nodes (expected: 2)",
+      "series": 1,
+      "values": [
+        "2"
+      ]
+    },
+    {
+      "title": "Available app replicas (expected: 2)",
+      "series": 1,
+      "values": [
+        "2"
+      ]
+    },
+    {
+      "title": "Running pods",
+      "series": 1,
+      "values": [
+        "20"
+      ]
+    },
+    {
+      "title": "Node CPU used (%)",
+      "series": 2,
+      "values": [
+        "2.165740740742028",
+        "0.5148148148145903"
+      ]
+    },
+    {
+      "title": "Node memory used (%)",
+      "series": 2,
+      "values": [
+        "16.7693006275771",
+        "6.188959452857845"
+      ]
+    },
+    {
+      "title": "Node root filesystem used (%)",
+      "series": 2,
+      "values": [
+        "26.1524342426932",
+        "19.64428854569771"
+      ]
+    }
+  ],
+  "grafana_authenticated_browser_or_panel_api_retested_today": false,
+  "production_alert": {
+    "name": "DemoAvailableReplicasLow",
+    "state": "inactive",
+    "health": "ok",
+    "duration_seconds": 120
+  },
+  "temporary_alert_rule_resources": 0,
+  "active_alertmanager_targets": 0,
+  "rbac": {
+    "service_account": "demo-reader",
+    "namespace": "demo",
+    "automount": false,
+    "rules": [
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "pods",
+          "services"
+        ],
+        "verbs": [
+          "get",
+          "list",
+          "watch"
+        ]
+      },
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "pods/log"
+        ],
+        "verbs": [
+          "get"
+        ]
+      },
+      {
+        "apiGroups": [
+          "apps"
+        ],
+        "resources": [
+          "deployments"
+        ],
+        "verbs": [
+          "get",
+          "list",
+          "watch"
+        ]
+      }
+    ],
+    "role_ref": {
+      "apiGroup": "rbac.authorization.k8s.io",
+      "kind": "Role",
+      "name": "demo-reader"
+    }
+  },
+  "certificate_metadata": "notBefore=Oct 24 15:22:06 2026 GMT\nnotAfter=Nov 23 15:22:06 2026 GMT\nsha256 Fingerprint=88:8E:50:61:A7:79:4D:33:09:CE:39:24:3E:82:FC:18:B5:17:96:66:95:A5:FF:CE:CC:49:EE:A3:90:0D:AD:34\n",
+  "app_http": [
+    {
+      "url": "http://95.133.252.141/",
+      "status": 200,
+      "content_type": "text/html"
+    },
+    {
+      "url": "http://95.133.252.141/healthz",
+      "status": 200,
+      "content_type": "text/plain"
+    },
+    {
+      "url": "https://95.133.252.141/",
+      "status": 200,
+      "content_type": "text/html"
+    },
+    {
+      "url": "https://95.133.252.141/healthz",
+      "status": 200,
+      "content_type": "text/plain"
+    }
+  ],
+  "chart_version": "90.1.2",
+  "status": "PASS",
+  "review_kind": "read-only; no deploy, rollout, rule injection or credential export",
+  "completed_at": "2026-10-25T16:36:46.896524+00:00",
+  "node_services": {
+    "server": {
+      "service": "k3s",
+      "active": true,
+      "firewall_enabled": true,
+      "wireguard_last_handshake_unix": 1792946069
+    },
+    "worker": {
+      "service": "k3s-agent",
+      "active": true,
+      "firewall_enabled": true,
+      "wireguard_last_handshake_unix": 1792946069
+    }
+  },
+  "external_http": [
+    {
+      "url": "http://95.133.252.141/",
+      "status": 200,
+      "content_type": "text/html"
+    },
+    {
+      "url": "http://95.133.252.141/healthz",
+      "status": 200,
+      "content_type": "text/plain"
+    },
+    {
+      "url": "https://95.133.252.141/",
+      "status": 200,
+      "content_type": "text/html"
+    },
+    {
+      "url": "https://95.133.252.141/healthz",
+      "status": 200,
+      "content_type": "text/plain"
+    }
+  ],
+  "blocked_external_ports": [
+    {
+      "host": "95.133.252.141",
+      "port": 6443,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 10250,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 9100,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 3000,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 9090,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 30677,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.252.141",
+      "port": 32191,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 6443,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 10250,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 9100,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 3000,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 9090,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 30677,
+      "reachable": false,
+      "result": "TimeoutError"
+    },
+    {
+      "host": "95.133.254.68",
+      "port": 32191,
+      "reachable": false,
+      "result": "TimeoutError"
+    }
+  ],
+  "source_sha256": {
+    "scripts/review-health.py": "2a6f75022db7e9637ec2da0f90bcc6144306bacc4637e43516877e94bd773898",
+    "scripts/remote/review-health.py": "2753010c36ddd0d346f986dbd7020009adb084932d816eec141361ad62ac3280"
+  }
+}

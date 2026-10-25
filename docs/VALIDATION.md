@@ -90,4 +90,30 @@ follow-up changes the required-platform verification timestamp above. A separate
 requested [alert test](ALERTS.md) subsequently verified rule loading and a synthetic
 Pending/Firing/recovery cycle, with cleanup and unchanged service health recorded
 in [alert-checks.json](evidence/alert-checks.json). External notification delivery
-is not configured/tested. GitOps remains outside this hand-in.
+is not configured/tested. The separately authorized GitOps follow-up is now
+recorded below.
+
+## Argo CD follow-up — 25 October
+
+PASS: Argo CD v3.5.6, locked official manifest; eight ClusterIP Services, no public
+UI Ingress/host port. UI HTML/version passed through a temporary SSH tunnel with
+cleanup. Initial manual sync `4dda8de` and HTML-only Git change `9998ec8` reached
+Synced/Healthy with prune disabled. Before the second sync, OutOfSync/Healthy was
+observed with the old live content; afterwards the live ConfigMap hash matched
+the new commit. Both app Pods and public HTTP/HTTPS served the Git-delivered marker;
+health stayed 200/text/plain and exact `ok\n`.
+
+Seven app objects only are tracked; Namespace, Secrets, monitoring and RBAC remain
+outside the Application. Legacy apply was verified refused. App/monitoring Pod
+UIDs and restart counts stayed unchanged. Final health at **16:36:46 UTC** passed
+for two Ready nodes, 20 ready running Pods, 15 scrape targets, both monitoring PVCs,
+Grafana and six source queries, plus the healthy/Inactive production rule.
+At 16:38:02 UTC both host input rules and persistent policies matched the original
+retained-Wi-Fi policy; all six additional Argo-related public port probes were
+unreachable. The initial prune-field validator issue was corrected after reading
+the actual successful operation, and is recorded rather than hidden.
+
+See [GitOps evidence](evidence/gitops-checks.json), [final health](evidence/gitops-health.json),
+[live manifest comparison](evidence/gitops-manifest-consistency.json) and
+[operations/rollback](GITOPS.md). No authenticated UI login, automatic sync/prune,
+rollback/uninstall drill or external notification is claimed.

@@ -31,6 +31,12 @@ keys into tickets or Git. Keep SSH host key verification enabled.
 
 ## Application rollback
 
+The app is now managed by Argo CD from `gitops/demo/app.yaml`. Use a Git revert,
+push and explicit Argo sync; see [GitOps rollback and emergency handback](GITOPS.md#rollback-and-emergency-handback).
+The legacy app command refuses the adopted app. The older commands below describe
+manual recovery after an explicit ownership handback; they are not the routine
+GitOps update path and were not executed during this follow-up.
+
 ```sh
 k3s kubectl -n demo rollout history deployment/demo
 k3s kubectl -n demo rollout undo deployment/demo
@@ -41,9 +47,14 @@ k3s kubectl -n demo rollout status deployment/demo
 there is no previous version to restore. Versioned manifests are the source for
 ConfigMap and Ingress changes: revert those files and reapply them. Application
 content is mounted from a ConfigMap; content updates may take time to propagate.
-An intentionally destructive application removal is `kubectl delete -f
-/opt/verda-platform/manifests/app.yaml`; deleting its Namespace also deletes the
-TLS Secret and other resources in that namespace.
+Do not use `kubectl delete -f /opt/verda-platform/manifests/app.yaml` for handback:
+that legacy file includes the Namespace and would also remove the TLS Secret
+and other namespace resources. The GitOps handback preserves them.
+
+For a future GitOps nginx ConfigMap change, also change a Pod-template revision
+annotation in the same Git commit so the `subPath` mount is refreshed by a controlled
+rolling update. The demonstrated HTML change used an ordinary ConfigMap directory
+mount and propagated without restarting Pods.
 
 The exact `/healthz` nginx location serves the original static file with
 `Content-Type: text/plain`; both readiness and liveness probes still use that

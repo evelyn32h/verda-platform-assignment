@@ -101,5 +101,5 @@ healthy and Inactive with two available replicas. The application and monitoring
 Pod UIDs/restart counts matched the pre-test baseline; external HTTP/HTTPS,
 Grafana health and all 15 scrape targets remained healthy. Raw execution evidence
 is preserved locally in `.local/evidence/20261024T182626Z/`.
-This proves rule processing, not notification delivery. Argo CD remains outside
+This proves rule processing, not notification delivery. Argo CD was outside
 this work.
