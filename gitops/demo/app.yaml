@@ -22,7 +22,9 @@ data:
 
     <p>Cross-node traffic uses WireGuard. Prometheus and Grafana monitor the platform.</p>
 
-    <p><code>GET /healthz</code> checks the application endpoint.</p></html>
+    <p><code>GET /healthz</code> checks the application endpoint.</p>
+
+    <p id="gitops-proof">Managed with Argo CD from Git.</p></html>
 
     '
   healthz: 'ok
