@@ -4,9 +4,13 @@ Two existing Ubuntu VMs are the target: `verda-k3s-server` (`95.133.252.141`) an
 `verda-k3s-worker` (`95.133.254.68`). This repository contains the deployment,
 application manifests, monitoring configuration, and operator notes.
 
-**Current state:** both VMs authenticated through the owner's SSH agent and the
-required platform is deployed. The two-node cluster, external HTTP/HTTPS,
-metrics-server, Prometheus and Grafana passed live validation. See the complete
+**Delivery status — 25 October 2026:** fresh SSH and read-only health checks pass
+on both VMs from the retained management Wi-Fi. Both nodes are Ready, the app has
+two available replicas, all 15 Prometheus targets are healthy, and Grafana plus
+six dashboard source queries return data. HTTP/HTTPS index and plain-text health
+checks pass. All 15 declared manifest objects match the live configuration.
+The cancelled new-IP grant was withdrawn on both hosts; no rollback timer remains
+active for that change. See the [delivery checklist and owner actions](docs/HANDOFF.md),
 [validation record](docs/VALIDATION.md) and [summary report](docs/REPORT.md).
 
 ## Scope
@@ -41,10 +45,13 @@ Verda network. Pod traffic is encrypted by Flannel `wireguard-native`. Pod and
 Service CIDRs are `10.42.0.0/16` and `10.43.0.0/16`. The host firewall permits
 TCP 6443/10250/9100 and UDP 51820 only from the peer VM. Port 9100 is needed for
 node-exporter scraping because cross-node traffic to its host-network address
-is masqueraded to the source node's IP. SSH is limited to the IPv4
-address observed in the authenticated `SSH_CONNECTION`; reconfigure it before
-changing your management network. Public application ports are 80/443. Only the
-server is labeled eligible for ServiceLB. Monitoring is ClusterIP only.
+is masqueraded to the source node's IP. SSH currently allows the retained
+management source `81.226.0.124/32`. Node preparation preserves approved sources
+from the existing policy/address registry and the authenticated SSH connection.
+Changing management networks requires a separately authorized additive rule and
+fresh-source SSH proof; see the [closed access change](docs/SSH_ACCESS.md).
+Public application ports are 80/443. Only the server is labeled eligible for
+ServiceLB. Monitoring is ClusterIP only.
 
 The nftables policy owns only `table inet verda_platform`. It also filters public
 forwarded traffic so generated Kubernetes NodePorts do not accidentally bypass
@@ -80,7 +87,37 @@ Do not send the passphrase or private key through chat. Do not remove its
 passphrase. If the key is loaded but authentication still fails, check the public
 key fingerprint and `authorized_keys` through the provider console.
 
-## Deploy and verify
+## Read-only review of the existing cluster
+
+For the owner or an already-authorized operator, from the repository root:
+
+```powershell
+python scripts/review-health.py
+python scripts/review-release.py
+```
+
+The first needs working SSH and only reads existing state. It does not redeploy,
+restart workloads, inject alerts or read Secret values. The second scans local
+Git contents/history and writes a local publication-review record. Neither
+publishes the repository. Do not run deployment or alert replay merely to review
+the existing cluster.
+
+The optional release scanner and manifest comparison also use **PyYAML** in
+the local Python environment; `platform.py` and the health reviewer use the
+standard library. `python scripts/review-manifests.py` compares declared fields
+using GET requests only and never fetches Secrets. These reviews do not install
+dependencies or change the cluster.
+
+`Connection timed out` indicates a transport/reachability problem: check network,
+VPN, source-IP allowlisting and SSH service reachability. `Permission denied
+(publickey)` is an authentication problem. Do not replace a loaded key, remove
+its passphrase or disable host verification to address a TCP timeout.
+
+## Initial deployment / intentional changes
+
+These commands **change the VMs/cluster** and are not routine delivery review.
+VM provisioning is external to this repository; scripts expect pre-provisioned
+hosts and do not create VMs or provide a Verda provisioning audit trail.
 
 ```powershell
 python scripts/platform.py preflight
@@ -120,19 +157,25 @@ After successful validation:
 
 * App: `http://95.133.252.141/` and `https://95.133.252.141/`.
 * Health: `/healthz` returns `200 OK`, `Content-Type: text/plain`, and `ok\n`.
-* Kubernetes: `ssh root@95.133.252.141`, then `k3s kubectl get nodes -o wide`.
+* Kubernetes (authorized owner/operator only): use the SSH identity below, then
+  `k3s kubectl get nodes -o wide`.
 * Grafana: use the tunnel below, then `http://localhost:3000` and
   `/d/verda-platform/verda-platform-overview`.
 
-Run this in a terminal and leave it open (use `-i` if the identity is not selected
-by your SSH configuration):
+Management commands assume an authorized key and source IP. They do not grant
+external reviewers access by themselves. No reviewer SSH identity or Grafana
+account has been provisioned for sharing. See [handoff options](docs/HANDOFF.md#owner-actions-before-submission).
+
+Run this in a terminal and leave it open:
 
 ```powershell
 ssh -i "$env:USERPROFILE\.ssh\verda_assignment" -o ExitOnForwardFailure=yes -L 3000:127.0.0.1:3000 root@95.133.252.141 "k3s kubectl -n monitoring port-forward --address=127.0.0.1 svc/monitoring-grafana 3000:80"
 ```
 
-Grafana user is `admin`. To retrieve its generated password, run the following
-**in your own terminal**, without pasting the output into reports or chat:
+The owner's initial Grafana user is `admin`. To retrieve its bootstrap password,
+run this **in your own terminal**; do not put output in reports, screenshots or
+chat. A password changed later in Grafana may differ from the initial Secret;
+use your current login in that case.
 
 ```powershell
 ssh -i "$env:USERPROFILE\.ssh\verda_assignment" root@95.133.252.141 "k3s kubectl -n monitoring get secret grafana-admin -o jsonpath='{.data.admin-password}' | base64 -d"
@@ -145,9 +188,9 @@ ssh -i "$env:USERPROFILE\.ssh\verda_assignment" -o ExitOnForwardFailure=yes -L 9
 ```
 
 The custom six-panel dashboard covers ready nodes, available app replicas,
-running pods, node CPU, memory, and root filesystem usage. The bundled dashboards
-are also provisioned. The chart disables unavailable k3s control-plane scrape
-targets to avoid presenting expected missing endpoints as monitoring failures.
+running pods, node CPU, memory, and root filesystem usage. The chart disables
+unavailable k3s control-plane scrape targets to avoid presenting expected missing
+endpoints as monitoring failures.
 
 ## Basic RBAC
 
@@ -165,6 +208,7 @@ python scripts/rbac.py verify
 See [policy and usage](docs/RBAC.md), [YAML](manifests/rbac.yaml) and the
 [92-check verification record](docs/evidence/rbac-checks.json). Both the app and
 monitoring passed before/after availability checks without a Pod restart/rollout.
+`apply` changes the RBAC objects; `verify` only checks existing authorization.
 
 ## Simple application alert
 
@@ -182,6 +226,8 @@ The [rule YAML](manifests/alerts.yaml), [runbook](docs/ALERTS.md) and
 [verification evidence](docs/evidence/alert-checks.json) cover actual loading,
 a harmless synthetic Pending → Firing → Inactive test, cleanup and unchanged
 application/monitoring health. This validates triggering, not notification delivery.
+`apply-test` temporarily changes rules: it is proof replay, not a read-only health
+check, and is not needed for routine submission review.
 
 ## TLS approach
 

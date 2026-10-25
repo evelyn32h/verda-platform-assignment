@@ -8,6 +8,25 @@ live verification on 24 October 2026. The sample app is available at
 documented self-signed IP certificate. [Validation](VALIDATION.md) contains the
 results and sanitized evidence; the README contains access instructions.
 
+The **25 October delivery review** passed fresh SSH checks on both VMs from
+the retained original Wi-Fi and GET-only cluster/monitoring checks: two Ready
+nodes, two spread app replicas, 15 healthy targets, Grafana health and six
+dashboard source queries. Public HTTP/HTTPS index and health also passed.
+All 15 declared manifest objects match the live configuration (the API represents
+the Helm timeout `900s` as the equivalent `15m0s`). Today's check did not repeat
+authenticated Grafana browser/panel-API validation or the synthetic alert test.
+
+An earlier network switch caused SSH timeouts. The owner returned to the original
+Wi-Fi, then cancelled a staged new-IP access grant. That grant was withdrawn on
+both hosts, original runtime/persistent policy restored, and its two timers stopped.
+The original source `81.226.0.124/32` remains allowed. Access-management scripts
+that preserve approved sources were retained; node preparation was not executed.
+No workload redeployment, VM restart or application/monitoring change occurred.
+[Access closure](SSH_ACCESS.md) and [today's health evidence](evidence/delivery-health.json)
+record the outcome. [HANDOFF.md](HANDOFF.md) maps the PDF requirements and lists
+repository-link and optional screenshot actions before Monday, 26 October.
+The local repository has not been published.
+
 Deployment scripts, workload manifests, monitoring configuration, a custom
 dashboard and operator documentation are included in this Git repository.
 The basic namespace RBAC and simple application alert bonuses are deployed and
@@ -29,9 +48,10 @@ The firewall limits SSH to the operator's observed IPv4 and cluster/API, kubelet
 and node-exporter ports to the peer VM. Public app ports are 80/443. Forwarded
 traffic is filtered too; generated NodePorts were tested unreachable externally.
 
-Prometheus/Grafana use kube-prometheus-stack 90.1.2. Fifteen scrape targets are
-healthy. The six-panel Verda Platform Overview dashboard shows ready nodes, app
-replicas, running Pods, CPU, memory and root filesystem use. Each panel was
+Prometheus/Grafana use kube-prometheus-stack 90.1.2. Fifteen scrape targets were
+healthy at both the 24 October checks and today's read-only review. The six-panel
+Verda Platform Overview dashboard shows ready nodes, app replicas, running Pods,
+CPU, memory and root filesystem use. Each panel was
 queried through Grafana and returned data. Monitoring uses ClusterIP services
 and SSH tunnels. Grafana's 2 GiB and Prometheus's 10 GiB local-path PVCs are bound
 on the server.

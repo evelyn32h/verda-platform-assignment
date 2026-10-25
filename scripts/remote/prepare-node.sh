@@ -11,6 +11,11 @@ case "$role:$(hostname)" in
 esac
 admin=${SSH_CONNECTION%% *}
 [[ "$admin" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo 'Expected IPv4 SSH source'; exit 1; }
+# Preserve previously approved SSH sources; never regenerate policy from only
+# the latest connection. The helper also refuses to overlap a pending change.
+admin_list=$(python3 "$(dirname "$0")/admin-access.py" cidrs --current "$admin")
+test -n "$admin_list"
+admin_rules=$(printf '%s\n' "$admin_list" | sed 's#^#    ip saddr #; s#$# tcp dport 22 accept#')
 if { command -v k3s >/dev/null || test -e /etc/rancher/k3s/config.yaml; } && ! test -f /etc/verda-platform/managed; then
   echo 'Unmanaged Kubernetes installation found; refusing to overwrite'; exit 1
 fi
@@ -33,6 +38,9 @@ fi
 if test -f /etc/verda-platform/firewall.nft; then
   cp -a /etc/verda-platform/firewall.nft "$snapshot/previous-config.nft"
 fi
+if test -f /etc/verda-platform/admin-cidrs.txt; then
+  cp -a /etc/verda-platform/admin-cidrs.txt "$snapshot/previous-admin-cidrs.txt"
+fi
 for path in /etc/rancher/k3s/config.yaml /etc/sysctl.d/90-verda-platform.conf; do
   if test -f "$path"; then cp -a --parents "$path" "$snapshot/"; fi
 done
@@ -48,6 +56,11 @@ if test -f '$snapshot/previous-config.nft'; then
 else
   systemctl disable verda-firewall.service || true
 fi
+if test -f '$snapshot/previous-admin-cidrs.txt'; then
+  cp '$snapshot/previous-admin-cidrs.txt' /etc/verda-platform/admin-cidrs.txt
+else
+  rm -f /etc/verda-platform/admin-cidrs.txt
+fi
 EOF
 chmod 700 "$snapshot/rollback-firewall.sh"
 cat > /etc/verda-platform/firewall.nft <<EOF
@@ -59,7 +72,7 @@ table inet verda_platform {
     iifname "lo" accept
     iifname "eth0" udp sport 67 udp dport 68 accept
     meta l4proto { icmp, ipv6-icmp } accept
-    ip saddr $admin tcp dport 22 accept
+$admin_rules
     ip saddr $peer tcp dport { 6443, 10250, 9100 } accept
     ip saddr $peer udp dport 51820 accept
     iifname "eth0" ip saddr 10.42.0.0/16 drop
@@ -108,6 +121,8 @@ if systemctl is-active --quiet verda-firewall-rollback.timer; then
 fi
 systemd-run --unit=verda-firewall-rollback --on-active=5m /bin/bash "$snapshot/rollback-firewall.sh"
 /usr/local/sbin/verda-firewall
+printf '%s\n' "$admin_list" > /etc/verda-platform/admin-cidrs.txt
+chmod 600 /etc/verda-platform/admin-cidrs.txt
 touch /etc/verda-platform/managed
 printf 'net.ipv4.ip_forward = 1\n' > /etc/sysctl.d/90-verda-platform.conf
 sysctl -p /etc/sysctl.d/90-verda-platform.conf

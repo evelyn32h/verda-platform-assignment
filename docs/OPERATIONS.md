@@ -4,6 +4,13 @@ All commands below run on the server as root unless noted. Local operations use
 `python scripts/platform.py verify` and save their evidence locally. No rollback
 or uninstall runs automatically except the temporary firewall failsafe.
 
+For routine delivery review, prefer `python scripts/review-health.py`: it performs
+GET-only checks without reading Secret values or creating port-forward processes.
+The older full verifier also reads the Grafana credential to test authenticated
+panel queries and creates temporary loopback port-forwards. Neither verifier
+redeploys, but the new review intentionally has a narrower inspection scope.
+Authorization/source-IP access is required; see [delivery status](HANDOFF.md).
+
 ## Routine checks
 
 ```sh
@@ -66,6 +73,13 @@ Do not cancel the timer until a fresh SSH connection has passed. Before changing
 the management source IP, update the allowlist while retaining an existing SSH
 session and the provider console. Persist with `verda-firewall.service`; use the
 same timer/confirmation workflow when changing rules.
+
+The additive access helper also supports a narrower per-rule timed rollback
+without reloading the firewall. Its staged 25 October grant was cancelled and
+fully withdrawn; only the original management source remains allowed. Related
+scripts were retained but do not grant the cancelled address automatically.
+See [access closure and evidence](SSH_ACCESS.md). Future node preparation merges
+approved policy/registry sources rather than discarding previous allowed sources.
 
 ## Monitoring changes
 

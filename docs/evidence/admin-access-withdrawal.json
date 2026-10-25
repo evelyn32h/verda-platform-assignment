@@ -1,0 +1,47 @@
+{
+  "status": "WITHDRAWN",
+  "nodes": {
+    "server": {
+      "hostname": "verda-k3s-server",
+      "ssh_source": "81.226.0.124",
+      "status_before": "PENDING",
+      "status": "ROLLED_BACK",
+      "timer_active_before": true,
+      "timer_active": false,
+      "requested_cidr": "92.34.3.207/32",
+      "runtime_ssh_sources": [
+        "81.226.0.124/32"
+      ],
+      "persistent_ssh_sources": [
+        "81.226.0.124/32"
+      ],
+      "original_input_and_persistence_restored": true,
+      "forward_chain_unchanged": true,
+      "new_source_verified": false
+    },
+    "worker": {
+      "hostname": "verda-k3s-worker",
+      "ssh_source": "81.226.0.124",
+      "status_before": "PENDING",
+      "status": "ROLLED_BACK",
+      "timer_active_before": true,
+      "timer_active": false,
+      "requested_cidr": "92.34.3.207/32",
+      "runtime_ssh_sources": [
+        "81.226.0.124/32"
+      ],
+      "persistent_ssh_sources": [
+        "81.226.0.124/32"
+      ],
+      "original_input_and_persistence_restored": true,
+      "forward_chain_unchanged": true,
+      "new_source_verified": false
+    }
+  },
+  "new_source_verified": false,
+  "reason": "Owner cancelled new-IP access and retained the original Wi-Fi",
+  "scripts_retained": "Access-management helpers retain approved-source preservation; node preparation was not executed",
+  "vm_restart_requested": false,
+  "application_or_monitoring_change_requested": false,
+  "checked_at": "2026-10-25T15:57:16Z"
+}

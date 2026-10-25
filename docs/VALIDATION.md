@@ -4,6 +4,32 @@ Status: **PASS — all required items deployed and verified**.
 Final verification: **2026-10-24 17:44:59 UTC** (19:44:59 Europe/Berlin),
 refreshed after the health endpoint fix.
 
+## Delivery recheck — 25 October
+
+Fresh SSH passed on both VMs from `81.226.0.124` after the owner retained the
+original Wi-Fi. The cancelled new-IP SSH grant was withdrawn, exact original
+input/persistent policy restored, forward chains unchanged, and its timers stopped
+on both nodes. [Access closure](evidence/admin-access-withdrawal.json) records this.
+
+At **15:58:03 UTC**, the read-only health review passed: two Ready nodes; all 13
+running Pods ready with zero restarts; two app replicas on distinct nodes; metrics
+API and node metrics; both monitoring PVCs Bound; 15 healthy targets; Grafana
+database healthy; six dashboard source queries with data; the production rule
+healthy/Inactive and no test rules or active notification targets. Both k3s
+services, persistent firewall and WireGuard handshakes passed. HTTP and
+certificate-validated HTTPS index/health returned 200, with exact `ok\n` and
+`text/plain` on health. All 14 restricted external port probes were unreachable.
+
+[Today's evidence](evidence/delivery-health.json) records this GET-only review.
+[Manifest comparison](evidence/manifest-consistency.json) at 16:01:08 UTC confirms
+all 15 declared objects match live fields, allowing the equivalent Helm timeout
+format `900s`/`15m0s`. No redeployment, rollout, Secret read, alert injection or
+authenticated Grafana browser/panel-API retest occurred. The earlier full checks
+and bonus lifecycle/authorization records retain their original timestamps.
+[HANDOFF.md](HANDOFF.md) lists requirements, evidence and remaining owner materials.
+
+## Full platform validation — 24 October
+
 | Required item / check | Observed result |
 |---|---|
 | Two Verda VMs and SSH | PASS: expected hostnames; noninteractive authentication through owner-managed ssh-agent |

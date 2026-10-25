@@ -1,0 +1,111 @@
+{
+  "checked_at": "2026-10-25T16:03:10.565065+00:00",
+  "method": "HTTP HEAD, GET fallback; no notification or submission actions",
+  "results": [
+    {
+      "url": "http://95.133.252.141/",
+      "status": "COVERED_BY_PUBLIC_HEALTH_CHECK"
+    },
+    {
+      "url": "http://localhost:3000",
+      "status": "TUNNEL_REQUIRED_NOT_CHECKED"
+    },
+    {
+      "url": "https://95.133.252.141/",
+      "status": "COVERED_BY_PUBLIC_HEALTH_CHECK"
+    },
+    {
+      "url": "https://95.133.252.141/healthz",
+      "status": "COVERED_BY_PUBLIC_HEALTH_CHECK"
+    },
+    {
+      "url": "https://docs.k3s.io/add-ons/helm",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://docs.k3s.io/add-ons/helm"
+    },
+    {
+      "url": "https://docs.k3s.io/datastore/backup-restore",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://docs.k3s.io/datastore/backup-restore"
+    },
+    {
+      "url": "https://docs.k3s.io/installation/requirements",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://docs.k3s.io/installation/requirements"
+    },
+    {
+      "url": "https://docs.k3s.io/installation/uninstall",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://docs.k3s.io/installation/uninstall"
+    },
+    {
+      "url": "https://docs.k3s.io/networking/basic-network-options",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://docs.k3s.io/networking/basic-network-options"
+    },
+    {
+      "url": "https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack"
+    },
+    {
+      "url": "https://github.com/rancher/local-path-provisioner",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://github.com/rancher/local-path-provisioner"
+    },
+    {
+      "url": "https://grafana.com/docs/grafana/latest/administration/back-up-grafana/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://grafana.com/docs/grafana/latest/administration/back-up-grafana/"
+    },
+    {
+      "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+    },
+    {
+      "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/kubectl_auth_can-i/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/kubectl_auth_can-i/"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement"
+    },
+    {
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/"
+    },
+    {
+      "url": "https://prometheus.io/docs/prometheus/latest/storage/",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://prometheus.io/docs/prometheus/latest/storage/"
+    },
+    {
+      "url": "https://sqlite.org/howtocorrupt.html#_backup_or_restore_while_a_transaction_is_active",
+      "status": "PASS",
+      "http_status": 200,
+      "final_url": "https://sqlite.org/howtocorrupt.html#_backup_or_restore_while_a_transaction_is_active"
+    }
+  ],
+  "local_markdown_links": {
+    "status": "PASS",
+    "links_checked": 81,
+    "errors": []
+  }
+}

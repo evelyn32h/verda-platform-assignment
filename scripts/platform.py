@@ -77,7 +77,7 @@ def preflight(remotes):
         except RuntimeError as error:
             failures.append(str(error))
     if failures:
-        raise RuntimeError("; ".join(failures) + ". Load the key in your own local ssh-agent, then retry.")
+        raise RuntimeError("; ".join(failures) + ". Check the SSH errors above: network/source-IP allowlist, host verification, or agent authentication; then retry.")
 
 
 def prepare_nodes(remotes):
